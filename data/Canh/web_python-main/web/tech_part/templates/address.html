@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Địa chỉ của bạn</title>
+    <link rel="stylesheet" href="../static/css/address.css">
+</head>
+<body>
+<div class="address-container">
+    <div class="address-left">
+        <h2>Địa chỉ của bạn</h2>
+        <button class="btn-primary" id="addAddressBtn">+ Thêm địa chỉ</button>
+        <div class="address-info">
+            <div>Tên tài khoản: <span id="addressName"></span> (Địa chỉ mặc định)</div>
+            <div>Công ty: <span id="addressCompany"></span></div>
+            <div>Địa chỉ: <span id="addressDetail"></span>, <span id="addressCountry"></span></div>
+            <div>Quốc tịch: <span id="addressCountry2"></span></div>
+            <div>Số điện thoại: <span id="addressPhone"></span></div>
+        </div>
+        <button class="btn-primary" id="editAddressBtn">Chỉnh sửa địa chỉ</button>
+    </div>
+    <div class="address-right">
+        <button class="btn-back" onclick="window.history.back()">Quay lại</button>
+        <form id="addressForm">
+            <div class="form-row">
+                <label>Tên*</label>
+                <input type="text" id="formFirstname" required>
+            </div>
+            <div class="form-row">
+                <label>Họ*</label>
+                <input type="text" id="formLastname" required>
+            </div>
+            <div class="form-row">
+                <label>Công ty</label>
+                <input type="text" id="formCompany">
+            </div>
+            <div class="form-row">
+                <label>Địa chỉ*</label>
+                <input type="text" id="formAddress" required>
+            </div>
+            <div class="form-row">
+                <label>Địa chỉ 2</label>
+                <input type="text" id="formAddress2">
+            </div>
+            <div class="form-row">
+                <label>Quốc gia*</label>
+                <input type="text" id="formCountry" value="Vietnam" required>
+            </div>
+            <div class="form-row">
+                <label>Mã Zip</label>
+                <input type="text" id="formZip">
+            </div>
+            <div class="form-row">
+                <label>Số điện thoại*</label>
+                <input type="text" id="formPhone" required>
+            </div>
+            <div class="form-row">
+                <input type="checkbox" id="formDefault">
+                <label for="formDefault">Đặt là địa chỉ mặc định?</label>
+            </div>
+            <div class="form-actions" id="formActions">
+                <button type="submit" class="btn-primary" id="updateBtn">Cập nhật địa chỉ</button>
+                <button type="button" class="btn-cancel" id="cancelBtn">Hủy</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+// Lấy dữ liệu từ localStorage (nếu có)
+    function loadAddress() {
+        document.getElementById('addressName').textContent = (localStorage.getItem('lastname') || '') + ' ' + (localStorage.getItem('firstname') || '');
+        document.getElementById('addressCompany').textContent = localStorage.getItem('company') || '';
+        document.getElementById('addressDetail').textContent = localStorage.getItem('address') || '';
+        document.getElementById('addressCountry').textContent = localStorage.getItem('country') || 'Vietnam';
+        document.getElementById('addressCountry2').textContent = localStorage.getItem('country') || 'Vietnam';
+        document.getElementById('addressPhone').textContent = localStorage.getItem('phone') || '';
+    }
+    loadAddress();
+// Hiển thị dữ liệu lên form khi chỉnh sửa
+    document.getElementById('editAddressBtn').onclick = function() {
+        document.getElementById('formFirstname').value = localStorage.getItem('firstname') || '';
+        document.getElementById('formLastname').value = localStorage.getItem('lastname') || '';
+        document.getElementById('formCompany').value = localStorage.getItem('company') || '';
+        document.getElementById('formAddress').value = localStorage.getItem('address') || '';
+        document.getElementById('formAddress2').value = localStorage.getItem('address2') || '';
+        document.getElementById('formCountry').value = localStorage.getItem('country') || 'Vietnam';
+        document.getElementById('formZip').value = localStorage.getItem('zip') || '';
+        document.getElementById('formPhone').value = localStorage.getItem('phone') || '';
+        document.getElementById('formDefault').checked = true;
+        document.getElementById('updateBtn').style.display = '';
+        document.getElementById('addAddressBtnForm')?.remove();
+    };
+// Thêm địa chỉ mới
+    document.getElementById('addAddressBtn').onclick = function() {
+        document.getElementById('addressForm').reset();
+        document.getElementById('formCountry').value = 'Vietnam';
+        document.getElementById('updateBtn').style.display = 'none';
+        if (!document.getElementById('addAddressBtnForm')) {
+            let btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'btn-primary';
+            btn.id = 'addAddressBtnForm';
+            btn.textContent = 'Thêm địa chỉ';
+            btn.onclick = function() {
+                // Lưu dữ liệu mới vào localStorage
+                localStorage.setItem('firstname', document.getElementById('formFirstname').value);
+                localStorage.setItem('lastname', document.getElementById('formLastname').value);
+                localStorage.setItem('company', document.getElementById('formCompany').value);
+                localStorage.setItem('address', document.getElementById('formAddress').value);
+                localStorage.setItem('address2', document.getElementById('formAddress2').value);
+                localStorage.setItem('country', document.getElementById('formCountry').value);
+                localStorage.setItem('zip', document.getElementById('formZip').value);
+                localStorage.setItem('phone', document.getElementById('formPhone').value);
+                alert('Đã thêm địa chỉ mới!');
+                loadAddress();
+            };
+            document.getElementById('formActions').appendChild(btn);
+        }
+    };
+// Cập nhật địa chỉ
+    document.getElementById('addressForm').onsubmit = function(e) {
+        e.preventDefault();
+        localStorage.setItem('firstname', document.getElementById('formFirstname').value);
+        localStorage.setItem('lastname', document.getElementById('formLastname').value);
+        localStorage.setItem('company', document.getElementById('formCompany').value);
+        localStorage.setItem('address', document.getElementById('formAddress').value);
+        localStorage.setItem('address2', document.getElementById('formAddress2').value);
+        localStorage.setItem('country', document.getElementById('formCountry').value);
+        localStorage.setItem('zip', document.getElementById('formZip').value);
+        localStorage.setItem('phone', document.getElementById('formPhone').value);
+        alert('Đã cập nhật địa chỉ!');
+        loadAddress();
+    };
+// Hủy
+    document.getElementById('cancelBtn').onclick = function() {
+        document.getElementById('addressForm').reset();
+        document.getElementById('formCountry').value = 'Vietnam';
+    };
+</script>
+</body>
+</html>

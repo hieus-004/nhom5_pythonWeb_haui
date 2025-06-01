@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Thông tin tài khoản</title>
+    <link rel="stylesheet" href="../static/css/accountInfo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<div class="account-info-container">
+    <div class="account-info-left">
+        <h1>Thông tin tài khoản</h1>
+        <div class="account-info-greeting">
+            <b>Xin chào, <span class="account-info-name" id="accountNameDisplay"></span> !</b>
+        </div>
+        <table class="account-info-table">
+            <thead>
+                <tr>
+                    <th>Đơn hàng</th>
+                    <th>Ngày</th>
+                    <th>Giá trị đơn hàng</th>
+                    <th>Trạng thái thanh toán</th>
+                    <th>Trạng thái giao hàng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td id="orderDate"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="account-info-right">
+        <h1>Thông tin tài khoản</h1>
+        <div class="account-info-greeting">
+            <b>Xin chào, <span class="account-info-name" id="accountNameDisplay2"></span> !</b>
+        </div>
+        <div class="account-info-detail">
+            <div class="account-info-detail-title">TÀI KHOẢN CỦA TÔI</div>
+            <div class="account-info-detail-row">
+                Tên tài khoản: <b id="accountNameDetail"></b>
+            </div>
+            <div class="account-info-detail-row">
+                <i class="fa-solid fa-mobile-screen"></i> Điện thoại: <span id="accountPhone"></span>
+            </div>
+            <div class="account-info-detail-row">
+                <i class="fa-solid fa-location-dot"></i> Địa chỉ: <span id="accountAddress"></span>
+            </div>
+            <div class="account-info-detail-row">
+                <i class="fa-solid fa-building"></i> Công ty: <span id="accountCompany"></span>
+            </div>
+            <div class="account-info-detail-row">
+                <i class="fa-solid fa-earth-asia"></i> Quốc gia: <span id="accountCountry"></span>
+            </div>
+            <div class="account-info-detail-row">
+                <i class="fa-solid fa-envelope"></i> Zip code: <span id="accountZip"></span>
+            </div>
+            <button class="account-info-address-btn">Chỉnh sửa địa chỉ (1)</button>
+        </div>
+    </div>
+</div>
+<script>
+    var firstname = localStorage.getItem('firstname') || '';
+    var lastname = localStorage.getItem('lastname') || '';
+    var phone = localStorage.getItem('phone') || '';
+    var address = localStorage.getItem('address') || '';
+    var company = localStorage.getItem('company') || '';
+    var country = localStorage.getItem('country') || 'Vietnam';
+    var zip = localStorage.getItem('zip') || '';
+    var orderDate = localStorage.getItem('orderDate') || new Date().toLocaleDateString('vi-VN');
+
+    var fullName = (lastname + ' ' + firstname).trim() || 'Người dùng';
+
+    document.getElementById('accountNameDisplay').textContent = fullName;
+    document.getElementById('accountNameDisplay2').textContent = fullName;
+    document.getElementById('accountNameDetail').textContent = fullName + '!';
+    document.getElementById('accountPhone').textContent = phone;
+    document.getElementById('accountAddress').textContent = address;
+    document.getElementById('accountCompany').textContent = company;
+    document.getElementById('accountCountry').textContent = country;
+    document.getElementById('accountZip').textContent = zip;
+    document.getElementById('orderDate').textContent = orderDate;
+</script>
+</body>
+</html>

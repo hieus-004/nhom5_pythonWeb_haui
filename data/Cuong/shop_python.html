@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Python</title>
+  <link rel="stylesheet" href="stss.css">
+</head>
+<body>
+    <!-- SẢN PHẨM -->
+  <div id="search-section">
+    <div class="A1">Trang chủ &gt; <span>Kết quả tìm kiếm</span></div>
+    <h1 class="title">Kết quả tìm kiếm cho "Laptop"</h1>
+    <div class="product-list">
+      <div class="product-card">
+        <img src="laptop1.png" alt="HP" />
+        <h3>Laptop HP ProBook 460</h3>
+        <p class="price">20,990,000₫</p>
+        <button onclick="addToCart('Laptop HP ProBook 460', 20990000, 'laptop1.png')">Thêm vào giỏ</button>
+      </div>
+      <div class="product-card">
+        <img src="laptop2.png" alt="Dell" />
+        <h3>Laptop Dell Vostro 3430</h3>
+        <p class="price">15,990,000₫</p>
+        <button onclick="addToCart(' Laptop Dell Vostro 3430', 15990000, 'laptop2.png')">Thêm vào giỏ</button>
+      </div>
+      <div class="product-card">
+        <img src="laptop3.png" alt="HP" />
+        <h3>Laptop HP 15</h3>
+        <p class="price">23,490,000₫</p>
+        <button onclick="addToCart('Laptop HP 15', 23490000, 'laptop3.png')">Thêm vào giỏ</button>
+      </div>
+      <div class="product-card">
+        <img src="laptop4.png" alt="Dell" />
+        <h3>Laptop Dell Inspiron 3530</h3>
+        <p class="price">22,490,000₫</p>
+        <button onclick="addToCart('Laptop Dell Inspiron 3530', 22490000, 'laptop4.png')">Thêm vào giỏ</button>
+      </div>
+      <div class="product-card">
+        <img src="laptop5.png" alt="Lenovo" />
+        <h3>Laptop Lenovo IdeaPad 3</h3>
+        <p class="price">11,990,000₫</p>
+        <button onclick="addToCart('Laptop Lenovo IdeaPad 3', 11990000, 'laptop5.png')">Thêm vào giỏ</button>
+      </div>
+      <div class="product-card">
+        <img src="laptop6.png" alt="MacBook" />
+        <h3>MacBook Air M2 2024</h3>
+        <p class="price">22,890,000₫</p>
+        <button onclick="addToCart('MacBook Air M2 2024', 22890000, 'laptop6.png')">Thêm vào giỏ</button>
+      </div>
+      <div class="product-card">
+        <img src="laptop7.png" alt="MSI" />
+        <h3>Laptop MSI Modern 15 </h3>
+        <p class="price">16,990,000₫</p>
+        <button onclick="addToCart('Laptop MSI Modern 15 ', 16990000, 'laptop7.png')">Thêm vào giỏ</button>
+      </div>
+      <div class="product-card">
+        <img src="laptop8.png" alt="HP" />
+        <h3>Laptop HP Envy x360</h3>
+        <p class="price">33,190,000₫</p>
+        <button onclick="addToCart('Laptop HP Envy x360', 33190000, 'laptop8.png')">Thêm vào giỏ</button>
+      </div>
+      <div class="product-card">
+        <img src="laptop9.png" alt="Dell" />
+        <h3>Latop Dell Latitude</h3>
+        <p class="price">20,990,000₫</p>
+        <button onclick="addToCart('Latop Dell Latitude', 20990000, 'laptop9.png')">Thêm vào giỏ</button>
+      </div>
+      <div class="product-card">
+        <img src="laptop10.png" alt="MSI" />
+        <h3>Laptop Gaming MSI Stealth 16 AMG Motorsport</h3>
+        <p class="price">77,990,000₫</p>
+        <button onclick="addToCart('Laptop Gaming MSI Stealth 16 AMG Motorsport', 77990000, 'laptop10.png')">Thêm vào giỏ</button>
+      </div>
+    </div>
+    <br><br>
+    
+    <button id="floating-cart-btn" class="btn-secondary" onclick="showCart()">🛒 Giỏ hàng</button>
+  </div>
+
+  <!-- GIỎ HÀNG -->
+
+  <div id="cart-section" class="hidden">
+  <div class="A1">Trang chủ &gt; <span>Giỏ hàng</span></div>
+  <h1 class="title">Giỏ hàng</h1>
+
+  <div class="cart-wrapper">
+  
+    <div class="cart-left">
+      <table class="cart-table">
+        <thead>
+          <tr>
+            <th>Sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Thành tiền</th>
+          </tr>
+        </thead>
+        <tbody id="cart-body">
+          <!-- JS thêm sản phẩm -->
+        </tbody>
+      </table>
+    </div>
+
+   
+    <div class="cart-right">
+      <p class="cart-total">Tổng tiền: <span id="cart-total">0₫</span></p>
+      <label for="note">Ghi chú đơn hàng</label>
+      <textarea id="note" placeholder="Ghi chú"></textarea>
+      <br><br>
+      <button class="btn-primary" onclick="checkout()">💳 Thanh toán ngay</button>
+      <button class="btn-secondary" onclick="backToSearch()">🛒 Tiếp tục mua hàng</button>
+    </div>
+  </div>
+</div>
+
+
+  <!-- THÀNH CÔNG -->
+  <div id="success-section" class="success hidden">
+    <h2>🎉 Thanh toán thành công!</h2>
+    <p>Cảm ơn bạn đã mua hàng tại Shop  </p>
+    <br>
+    <button class="btn-secondary" onclick="backToSearch()">Mua thêm sản phẩm</button>
+  </div>
+   <script src="cart.js"></script>
+</body>

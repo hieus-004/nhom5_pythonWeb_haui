@@ -1,0 +1,49 @@
+                                {{% for product in sale_products %}}
+                                <div class="column xxl-2-4 md-4 sm-6 xsm-6">
+                                    <div class="content__saleProduct-item content__saleProduct-item1">
+                                        <img src="{{ product.image_url }}" alt="" class="saleProduct-item__img">
+                                        <span class="saleProduct-item__name">
+                                            {{ product.name }}
+                                        </span>
+                                        <span class="saleProduct-item__price">
+                                            {{ product.price }}₫
+                                        </span>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                                <!-- sale product container -->
+
+
+                            <!-- {% for product in products %}
+                                <div class="column xxl-2-4 md-4 sm-6 xsm-6">
+                                    <div class="content__bestSeller-item content__bestSeller-item{{ forloop.counter }}">
+                                        <img src="{{ product.image_url }}" alt="" class="bestSeller-item__img">
+                                        <span class="bestSeller-item__name">
+                                            {{ product.name }} 
+                                        </span>
+                                    </div>
+                                </div>
+                                {% endfor %} -->
+
+
+                                <!-- product container -->
+
+
+
+
+
+                                <!-- <div class="row">
+                            {% for category in categories %}
+                            <div class="column xxl-2-4 lg-3 md-4 sm-6 xsm-6">
+                                <div class="content__navBar-item content__navBar-item{{ forloop.counter }}">
+                                    <img src="" alt="" class="content__navBar-item-img content__navBar-item{{ forloop.counter }}-img">
+                                    <span class="content__navBar-item-text content__navBar-item{{ forloop.counter }}-text">
+                                        {{ category.name }}
+                                    </span>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div> -->
+
+                        <!-- categories container -->

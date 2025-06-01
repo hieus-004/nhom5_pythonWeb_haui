@@ -1,0 +1,68 @@
+MaSP,TenSP,HangSX,Gia,CPU,RAM,Ocung,Card,DVD,Keyboard,PhanLoai,CongIOsau,CongXuatTrinh,WIFI_Bluetooth,LAN,CongIOtruoc,KichThuoc,KhoiLuong,HDH,BaoHanh
+M1,Máy tính ?? bàn Dell Vostro 3020 SFF STI7V3020W1-16G-512G,DELL,11890000.00,"Intel Core i7-13700 (2.1GHz upto 5.1GHz, 16-Core, 24MB Cache","16GB DDR4 3200MHz , 2 khe c?m Ram - max 64GB","512GB SSD PCIe NVMe (x1 HDD 3.5"" sata)",Intel UHD Graphics 770,Không DVD,Bàn phím + Chu?t có dây c?ng USB,Small (SFF),"2 x USB 2.0 Type-A, 2 x USB 3.2 Gen 1 Type-A, 1 x HDMI, 1 x DisplayPort, 1 x RJ45 (LAN), 1 x Audio-out","1 x HDMI, 1 x DisplayPort",802.11ax và 5.0 Bluetooth,10/100/1000 Mbps,"2 x USB 2.0 Type-A, 2 x USB 3.2 Gen 1 Type-A, 1 x Headphone/ Microphone combo audio jack",29.3cm x 15.4cm x 32.43cm (W x D x H),4.75kg - 7.46 kg (16.46 lb),Windows 11 Home 64bit + Office Home and Student 2021,12.00
+M2,Máy tính ?? bàn Dell Vostro 3020 Tower 6FM7X1,DELL,15950000.00,"Intel Core i5-13400 2.5GHz up to 4.6GHz, 9.5MB","8GB DDR4 3200MHz (1x8GB), 2 khe c?m Ram - max 64GB","SSD 512G M2 PICE NVME (x1 HDD 3.5"" sata)",Intel UHD Graphics 730,Không DVD,Bàn phím + Chu?t có dây c?ng USB,Tower,"1 x HDMI 1.4b porti, 2 x USB 3.2 Gen 1 Type-A ports, 2 x USB 2.0 ports, 1 x RJ-45 Ethernet port","1 x HDMI, 1 x DisplayPort",802.11ax + Bluetooth 5.2,10/100/1000 Mbps,"1 x Global headset jack, 2 x USB 2.0 ports, 1 x USB 3.2 Gen 1 Type-C port, 1 x USB 3.2 Gen 1 Type-A port",324.3mm x 154mm x 293mm (HxWxD),4.75kg - 7.46 kg (16.46 lb),Windows 11 Home 64bit + Office Home and Student 2021,12.00
+M3,Máy tính ?? bàn Dell Inspiron 3020 Tower 42IN3020MT0001,DELL,11490000.00,"Intel Core i3-13100, 4C/8T, 12 MB cahe upto 3.40 GHz","8GB DDR4 3200MHz (1x8GB), 2 khe c?m Ram - max 64GB","256GB SSD PCIe NVMe (x1 HDD 3.5"" sata)",Intel UHD Graphics ,Không DVD,Bàn phím + Chu?t có dây c?ng USB,Tower,"2 x USB 2.0 Type-A, 2 x USB 3.2 Gen 1 Type-A, 1 x HDMI, 1 x DisplayPort, 1 x RJ45 (LAN), 1 x Audio-out","1 x HDMI, 1 x DisplayPort",802.11ax + Bluetooth 5.2,10/100/1000 Mbps,"2 x USB 2.0 Type-A, 2 x USB 3.2 Gen 1 Type-A, 1 x Headphone/ Microphone combo audio jack",29.3cm x 15.4cm x 32.43cm (W x D x H),4.75kg - 7.46 kg (16.46 lb),Windows 11 Home 64bit + Office Home and Student 2021,12.00
+M4,Máy tính ?? bàn ??ng b? Dell OptiPlex 7010 SFF 7010SFF8G5121Y,DELL,15690000.00,"Intel Core i5-13500 (2.5GHz up to 4.8GHz, 24 MB Intel Smart Cache)",8GB DDR4 3200MHz (1x8GB) (x2 slot),"512GB SSD M.2 2230 PCIe NVMe (x2 HDD 3.5"")",Intel UHD Graphics,Không DVD,Bàn phím + Chu?t có dây c?ng USB,,"4 x USB 3.1 Th? h? 1 ,4 x USB 2.0 (2 Lo?i A phía tr??c / 2 Lo?i A phía sau - 1 phía tr??c v?i PowerShare),1 RJ-45,1 Serial,2 DisplayPorts 1.2","1 x HDMI, 1 x DisplayPort 1.4",Không,10/100/1000 Mbps,"2 USB 2.0 ports, 2 USB 3.2 Gen 1 ports, 1 Universal audio port","Cao: 29,0cm x R?ng: 9,26cm x Sâu: 29,2cm",3.68 kg - 5.2kg,Ubuntu Linux 20.04,12.00
+M5,Máy tính ?? bàn Dell Vostro 3910MT 9M2DD2,DELL,14290000.00,Intel Core i5 12400 2.5Ghz up to 4.4Ghz,"8GB DDR4 3200MHz (1x8GB), 2 khe c?m Ram",512GB SSD PCIe NVMe,Intel UHD Graphics 730,Không DVD,Bàn phím + Chu?t có dây c?ng USB,Tower,"2 x USB 2.0 Type A, 2 x USB 3.2 Gen 1 Type A, 1 x HDMI, 1 x DisplayPort, 1 x RJ45 (LAN), 1 x Audio out, 1 x PCI, 1 x PCIe X16, 2 x PCIe X1, 3 x SATA","1 x DisplayPort, 1 x HDMI",802.11ax + Bluetooth 5.2,10/100/1000 Mbps,"2 x USB 2.0 Type A, 2 x USB 3.2 Gen 1 Type A, 1 x Headphone/ Microphone combo audio jack",29.2cm x 15.4cm x 32.43cm (W x D x H),4.38 kg,Windows 11 Home 64bit + Office Home and Student 2021,12.00
+M6,Máy tính ?? bàn HP Prodesk 400 G9 MT 72K98PA,HP,12690000.00," Intel Core i5-12500 (lên ??n 4.6 GHz v?i Intel Turbo Boost Technology, 18 MB L3 cache, 6 cores, 12 threads)","4GB DDR4 3200MHz (1 x 4GB), 2 khe c?m Ram","256GB SSD PCIe NVMe (x1 HDD 3.5"" Sata 3)",Intel UHD Graphics 770,Không DVD,Bàn phím + Chu?t có dây c?ng USB,Microtower,1 audio-out; 1 power connector; 1 RJ-45; 1 HDMI 1.4; 3 SuperSpeed USB Type-A 5Gbps ; 1 DisplayPort 1.4; 2 USB Type-A 480Mbps,1 x HDMI ; 1x DisplayPort 1.4,802.11a/b/g/n/ac và 5.0 Bluetooth,10/100/1000 Mbps,1 headphone/microphone combo; 1 SuperSpeed USB Type-C 10Gbps; 3 SuperSpeed USB Type-A 10Gbps,15.5 x 30.8 x 33.7 cm ; 5.31 kg (W x D x H),5.31 kg,Windows 11 Home 64bit,12.00
+M7,Máy tính ?? bàn HP 280 Pro G9 SFF 72K95PA,HP,17990000.00,Intel Core i7-12700 up to 4.90GHz,"8GB DDR4 3200Mhz (1 x 8GB), 2 khe c?m Ram",512GB SSD PCIe NVMe,Intel UHD Graphics 770,Không DVD,Bàn phím + Chu?t có dây c?ng USB,Small Form Factor,"4 x USB 3.2 Gen 1 Type-A, 1 x Headphone/ Microphone combo audio jack",HDMI,802.11 ac và 5.0 Bluetooth,10/100/1000 Mbps,"4 x USB 3.2 Gen 1 Type-A, 1 x Headphone/ Microphone combo audio jack",9.5cm x 30.3cm x 27cm (W x D x H),3.47 kg,Windows 11 Home Single Language 64-bit,12.00
+M8,Máy tính ?? bàn HP S01-pF2025d 6K7A3PA,HP,13890000.00,Intel Core i5-12400 up to 4.40Ghz,"8GB DDR4 3200MHz (1x8GB), 2 khe c?m Ram",512GB SSD PCIe NVMe,Intel UHD Graphics 730,Không DVD,Bàn phím + Chu?t có dây c?ng USB,Slim Tower,"4 x USB 2.0 Type-A, 1 x HDMI, 1 x VGA, 1 x RJ45, 2 x Audio jack (Line-in, Line-out), 1 x PCIe X1, 1 x PCIe X16, 3 x SATA, 1 x M.2 2230 (for WLAN)","1 x HDMI, 1 x VGA",Có và 5.0 Bluetooth,10/100/1000 Mbps,"4 x USB 3.1 Gen 1 Type-A, 1 x Headphone/ Microphone combo audio jack",9.5cm x 30.3cm x 27cm (W x D x H),3.486 kg,Windows 11 Home,12.00
+M9,Máy tính ?? bàn HP Pavilion TP01-3007d 6K7A7PA,HP,13850000.00,"Intel Core i5-12400 up to 4.4Ghz, 18MB","8GB DDR4 3200MHz (1x8GB), 2 khe c?m Ram",512GB SSD PCIe NVMe,Intel UHD Graphics,Không DVD,Bàn phím + Chu?t có dây c?ng USB,Tower,"4 x USB 2.0 Type-A, 1 x audio-in, 1 x audio-out, 1 x microphone, 1 x RJ-45","1 x HDMI, 1 x VGA",802.11ax + Bluetooth 5.2,10/100/1000 Mbps,"1 x USB Type-C 5Gbps, 2 x USB Type-A 10Gbps, 2 x USB Type-A 5Gbps, 1 x headphone/microphone combo",15.54cm x 30.4cm x 33.74cm (W x D x H),5.96 kg,Windows 11 Home,12.00
+M10,Máy tính ?? bàn Asus ROG Strix G15CF-71270F110W,ASUS,45990000.00,"Intel® Core™ i7-12700F Processor (25M Cache, up to 4.9 GHz, 8 cores)",16GB DDR4,512GB M.2 NVMe™ PCIe® 4.0 Performance SSD,GeForce RTX™ 3070 8GB ,Không DVD,Bàn phím + Chu?t có dây c?ng USB,,"1x RJ45 Gigabit Ethernet
+1x HDMI 2.0a
+1x RJ45 Gigabit Ethernet
+1x HDMI 2.0a
+1x Display port 1.4
+5 x Audio jacks
+2x USB 2.0 Type-A
+1x USB 3.2 Gen 1 Type-A
+1x USB 3.2 Gen 2 Type-C
+4x USB 3.2 Gen 2 Type-A",,Wi-Fi 6(802.11ax) (Dual band) 2*2 + Bluetooth 5.2,,1x Headphone 1x Mic in 1x USB 3.2 Gen 1 Type-A,18.50 x 42.10 x 49.80 cm,11kg,Windows 11,12.00
+M11,Máy tính ?? bàn Asus S500MC-511400040W,ASUS,13590000.00,"Intel® Core™ i5-11400 Processor, 6 nhân, 12 lu?ng",8GB DDR4 3200MHZ U-DIMM (x2 khe),"256GB SSD M.2 NVMe™ PCIe® 3.0 Sata
+
+4 x SATA 6.0Gb/s ports
+
+Drive Bay 3.5"" x 1",Intel® UHD Graphics,Không DVD,Bàn phím + Chu?t có dây c?ng USB,,"1x RJ45 Gigabit Ethernet
+
+1x HDMI 1.4
+
+1x VGA Port
+
+1x DVI-D
+
+2x PS2",,v5.2 Bluetooth,,"1x Headphone
+
+1x MIC in
+
+2x USB 2.0 Type-A
+
+1x USB 3.2 Gen 1 Type-C
+
+1x USB 3.2 Gen 1 Type-A",16.00 x 31.89 x 36.78 cm,5.90 kg,Windows 11 Home SL 64bit,12.00
+M12,Máy tính ?? bàn Asus ROG Strix G35DX-VN003W,ASUS,53990000.00,AMD Ryzen 7 5800X,16GB DDR4-3200 LO-DIMM,1TB M.2 NVMe PCIe 4.0 SSD,NVIDIA GeForce RTX3070 8GB DDR6,Không DVD,Bàn phím + Chu?t có dây c?ng USB,,"1 x USB 3.2 Gen 2 Type-C
+3 x USB 3.2 Gen 2
+4 x USB 3.2 Gen 1
+5 x Audio
+1 x S/PDIF-Out
+1 x RJ45
+1 x HDMI
+1 x DisplayPort
+2 x HDMI (GPU)
+3 x DisplayPort (GPU)",,"Wi-Fi 6 (802.11ax)
+Bluetooth 5.0 (Dual band) 2*2",,"2 x USB 3.2 Gen 1
+2 x USB 3.2 Gen 1 Type-C
+1 x Headphone
+1 x Microphone",27.9 x 43.3 x 50.1 cm,15kg,Windows 11 Home,12.00
+M13,Máy tính ?? bàn Asus ROG Strix G10DK-R5600G003W,ASUS,24990000.00,Ryzen 5 5600G,8GB DDR4 (t?i ?a 64GB),512GB M.2 NVMe™ PCIe® 3.0 SSD,GTX1660ti 6GB,Không DVD,Bàn phím + Chu?t có dây c?ng USB,,"1 x RJ45
+1 x HDMI 1.4
+1 x VGA Port
+1 x DVI-D
+1 x PS2
+3  x Audio jacks
+4 x USB 3.2 Gen 1
+2 x USB 3.2 Gen 2
+1 x DisplayPort (GPU)
+1 x DVI (GPU)
+2 x HDMI (GPU)",,"Wi-Fi 6 (802.11ax)
+Bluetooth 5.2",,"1 x 3.5mm combo audio jack
+2 x USB 3.2 Gen 1",(18 x 43 x 42.8) cm,8kg,Windows 11 Home,12.00
