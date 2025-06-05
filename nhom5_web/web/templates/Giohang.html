@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Giỏ hàng</title>
+    <link rel="stylesheet" href="{% static 'css/Giohang.css' %}">
+</head>
+<body>
+    <div class="content">
+        <div class="grid">
+            <div class="row">
+                <div class="column xxl-12">
+                    <div class="cart__breadcrumb">
+                        <a href="/">Trang chủ</a> &gt; <span>Giỏ hàng của bạn</span>
+                    </div>
+                    <h1 class="cart__title">Giỏ hàng</h1>
+                    <div class="row">
+                        <div class="column xxl-8 md-12 sm-12 xsm-12">
+                            <table class="cart__table">
+                                <thead>
+                                    <tr>
+                                        <th>Sản phẩm</th>
+                                        <th>Số lượng</th>
+                                        <th>Thành tiền</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in cart_items %}
+                                    <tr>
+                                        <td>
+                                            <img src="{{ item.image_url }}" alt="{{ item.product_name }}" class="cart__product-img">
+                                            <span>{{ item.product_name }}</span>
+                                        </td>
+                                        <td>
+                                            <button>-</button>
+                                            <span>{{ item.quantity }}</span>
+                                            <button>+</button>
+                                        </td>
+                                        <td>
+                                            <span>{{ item.total_price|floatformat:0 }}₫</span>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="column xxl-4 md-12 sm-12 xsm-12">
+                            <div class="cart__summary">
+                                <div class="cart__total">
+                                    Tổng tiền <span>{{ cart_total|floatformat:0 }}₫</span>
+                                </div>
+                                <textarea class="cart__note" placeholder="Ghi chú"></textarea>
+                                <button class="cart__checkout-btn">Thanh toán ngay</button>
+                                <button class="cart__continue-btn">Tiếp tục mua hàng</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -23,20 +23,20 @@ class Command(BaseCommand):
         for index, row in df1.iterrows():
             # Assuming the DataFrame has columns matching the model fields
             san_pham = SanPham(
-                MaSp=row['MaSP'],
-                TenSp=row['TenSP'],
+                MaSp=row['MaSp'],
+                TenSp=row['TenSp'],
                 HangSX=row['HangSX'],
                 Gia=row['Gia'],
                 CPU=row['CPU'],
-                Ram=row['RAM'],
-                OCung=row['Ocung'],
+                Ram=row['Ram'],
+                OCung=row['OCung'],
                 Card=row['Card'],
                 DVD=row['DVD'],
                 Keyboard=row['Keyboard'],
                 PhanLoai=row['PhanLoai'],
                 CongIOsau=row['CongIOsau'],
                 CongXuatTrinh=row['CongXuatTrinh'],
-                Wifi_Bluetooth=row['WIFI_Bluetooth'],
+                Wifi_Bluetooth=row['Wifi_Bluetooth'],
                 LAN=row['LAN'],
                 CongIOtruoc=row['CongIOtruoc'],
                 KichThuoc=row['KichThuoc'],
@@ -49,18 +49,6 @@ class Command(BaseCommand):
 
             print("Data imported successfully.")
 
-        # import data tin tuc
-        df3 = pd.read_excel('web/data/Data3.xlsx')
-        for index, row in df3.iterrows():
-            # Assuming the DataFrame has columns matching the model fields
-            tin_tuc = TinTuc(
-                MaTT=row['MaTT'],
-                TenTT=row['TenTT']
-            )
-            tin_tuc.save()
-
-            print("TinTuc data imported successfully.") 
-
         # import data hinh anh
         df4 = pd.read_excel('web/data/Data4.xlsx')
         for index, row in df4.iterrows():
@@ -68,8 +56,6 @@ class Command(BaseCommand):
             hinh_anh = HinhAnh(
                 MaHA=row['MaHA'],
                 MaSp=SanPham.objects.get(MaSp=row['MaSp']) if pd.notna(row['MaSp']) else None,
-                MaDM=DanhMuc.objects.get(MaDM=row['MaDM']) if pd.notna(row['MaDM']) else None,
-                MaTT=TinTuc.objects.get(MaTT=row['MaTT']) if pd.notna(row['MaTT']) else None
             )
             hinh_anh.save()
 
@@ -90,6 +76,22 @@ class Command(BaseCommand):
             don_hang.save()
 
             print("DonHang data imported successfully.")
+
+        # import data don hang - san pham
+        df3 = pd.read_excel('web/data/Data3.xlsx')
+        for index, row in df3.iterrows():
+            MaDH = DonHang.objects.get(MaDH=row['MaDH']) if pd.notna(row['MaDH']) else None
+            MaSp = SanPham.objects.get(MaSp=row['MaSp']) if pd.notna(row['MaSp']) else None
+            if MaDH and MaSp:
+                obj, created = DonHang_SanPham.objects.get_or_create(
+                    DonHang=MaDH,
+                    SanPham=MaSp,
+                    defaults={'SoLuong': row['SoLuong']}
+                )
+                if not created:
+                    obj.SoLuong = row['SoLuong']
+                    obj.save()
+            print("DonHang_SanPham data imported successfully.")
 
 
         # import data dia chi
@@ -133,12 +135,31 @@ class Command(BaseCommand):
             gio_hang = GioHang(
                 MaGH=row['MaGH'],
                 TaiKhoan=TaiKhoan.objects.get(MaTK=row['MaTK']) if pd.notna(row['MaTK']) else None
-                SanPham=SanPham.objects.get(MaSp=row['MaSp']) if pd.notna(row['MaSp']) else None
             )
             gio_hang.save()
+            if pd.notna(row['MaSp']):
+                san_pham = SanPham.objects.get(MaSp=row['MaSp'])
+                gio_hang.SanPham.add(san_pham)
+
             print("GioHang data imported successfully.")
+
+        # import data gio hang - san pham
+        df10 = pd.read_excel('web/data/Data10.xlsx')
+        for index, row in df10.iterrows():
+            gio_hang = GioHang.objects.get(MaGH=row['MaGH']) if pd.notna(row['MaGH']) else None
+            san_pham = SanPham.objects.get(MaSp=row['MaSp']) if pd.notna(row['MaSp']) else None
+            if gio_hang and san_pham:
+                obj, created = GioHang_SanPham.objects.get_or_create(
+                    GioHang=gio_hang,
+                    SanPham=san_pham,
+                    defaults={'SoLuong': row['SoLuong']}
+                )
+                if not created:
+                    obj.SoLuong = row['SoLuong']
+                    obj.save()
+            print("GioHang_SanPham data imported successfully.")
         
-        #import data khuyen mai
+        # import data khuyen mai
         df9 = pd.read_excel('web/data/Data9.xlsx')  
         for index, row in df9.iterrows():
             # Assuming the DataFrame has columns matching the model fields

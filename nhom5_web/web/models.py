@@ -34,18 +34,10 @@ class SanPham(models.Model):
     def __str__(self):
         return self.TenSp
 
-class TinTuc(models.Model):
-    MaTT = models.CharField(max_length=30, primary_key=True)
-    TenTT = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.TenTT
 
 class HinhAnh(models.Model):
     MaHA = models.CharField(max_length=30, primary_key=True)
     MaSp = models.ForeignKey(SanPham, on_delete=models.CASCADE, null=True, blank=True)
-    MaDM = models.ForeignKey(DanhMuc, on_delete=models.CASCADE, null=True, blank=True)
-    MaTT = models.ForeignKey(TinTuc, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return f"Hình ảnh {self.MaHA}"
@@ -66,7 +58,7 @@ class DonHang(models.Model):
 
 class DonHang_SanPham(models.Model):
     DonHang = models.ForeignKey(DonHang, on_delete=models.CASCADE)
-    SanPham = models.ForeignKey('SanPham', on_delete=models.CASCADE)
+    SanPham = models.ForeignKey(SanPham, on_delete=models.CASCADE)
     SoLuong = models.PositiveIntegerField(default=1)
 
     class Meta:
@@ -124,7 +116,7 @@ class KhuyenMai(models.Model):
     NgayBatDau = models.DateField()
     NgayKetThuc = models.DateField()
     PhanTram = models.DecimalField(max_digits=5, decimal_places=2)
-    MaSP = models.ForeignKey(SanPham, on_delete=models.CASCADE)
+    MaSp = models.ForeignKey(SanPham, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"Giảm {self.PhanTram}% cho {self.MaSP.TenSp}"
