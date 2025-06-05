@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kết quả tìm kiếm</title>
+    <link rel="stylesheet" href="{% static 'css/Timkiem.css' %}">
+</head>
+<body>
+    <div class="content">
+        <div class="grid">
+            <div class="row">
+                <div class="column xxl-12">
+                    <div class="cart__breadcrumb">
+                        <a href="/">Trang chủ</a> &gt; <span>Tìm kiếm</span>
+                    </div>
+                    <h2 style="font-size: 22px; margin-bottom: 24px;">
+                        Có {{ page_obj.paginator.count }} kết quả tìm kiếm phù hợp cho từ khóa 
+                        "<span style="color: #0050c8;">{{ keyword }}</span>"
+                    </h2>
+                    <div class="row">
+                        {% for product in products %}
+                        <div class="column xxl-2-4 md-4 sm-6 xsm-6" style="margin-bottom: 32px;">
+                            <div class="content__saleProduct-item">
+                                <img src="{{ product.image_url }}" alt="{{ product.TenSP }}" class="cart__product-img">
+                                <div class="saleProduct-item__name">
+                                    {{ product.TenSP }}
+                                </div>
+                                <div class="saleProduct-item__price">
+                                    {{ product.Gia|floatformat:0 }}₫
+                                </div>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <div class="column xxl-12">
+                            <p>Không tìm thấy sản phẩm nào phù hợp.</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

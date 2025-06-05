@@ -77,7 +77,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'mssql',
         'NAME': 'nhom5_web',
-        'HOST': 'absmonster\SQLEXPRESS',
+        'HOST': 'localhost',
         'PORT': '',
         'OPTIONS': {
             'driver': 'ODBC Driver 17 for SQL Server',
