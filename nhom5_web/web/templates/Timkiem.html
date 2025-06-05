@@ -4,9 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Kết quả tìm kiếm</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/grid.css' %}">
     <link rel="stylesheet" href="{% static 'css/Timkiem.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
+    {% include "header.html" %}
     <div class="content">
         <div class="grid">
             <div class="row">
@@ -29,6 +33,12 @@
                                 <div class="saleProduct-item__price">
                                     {{ product.Gia|floatformat:0 }}₫
                                 </div>
+                                <!-- Thêm vào mỗi sản phẩm trong homePage.html hoặc Timkiem.html -->
+                                <form action="{% url 'them_vao_gio' %}" method="post" class="add-to-cart-form">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="product_MaSp" value="{{ product.MaSp|default:'' }}">
+                                    <button type="submit" class="add-to-cart-btn">Thêm vào giỏ hàng</button>
+                                </form>
                             </div>
                         </div>
                         {% empty %}
@@ -41,5 +51,6 @@
             </div>
         </div>
     </div>
+    {% include "footer.html" %}
 </body>
 </html>

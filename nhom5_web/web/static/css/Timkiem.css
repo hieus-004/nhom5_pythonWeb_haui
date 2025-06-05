@@ -89,6 +89,23 @@ h2 {
     font-size: 18px;
     margin-top: auto;
 }
+.add-to-cart-btn {
+    background: #0050c8;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 18px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.add-to-cart-btn:hover {
+    background: #003a8c;
+}
 
 @media (max-width: 1200px) {
     .xxl-2-4 { width: 25%; }

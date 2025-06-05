@@ -142,6 +142,22 @@ body {
 .cart__continue-btn:hover {
     background: #f5f5f5;
 }
+/* Nút Xóa trong giỏ hàng */
+.remove-btn {
+    background: red;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 14px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-left: 4px;
+}
+.remove-btn:hover {
+    background: #d9363e;
+}
 
 @media (max-width: 900px) {
     .content { padding: 12px 0; }

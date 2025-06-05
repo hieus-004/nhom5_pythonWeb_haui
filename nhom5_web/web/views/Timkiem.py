@@ -16,12 +16,13 @@ def timkiem_view(request):
             'TenSP': sp.TenSp,
             'Gia': sp.Gia,
             'image_url': image_url,
+            'MaSp': sp.MaSp,   # BẮT BUỘC phải có dòng này
         })
 
     danhMuc = DanhMuc.objects.all()  # Lấy danh mục như trang chủ
 
     return render(request, 'Timkiem.html', {
         'danhMuc': danhMuc,
-        'products': product_list,  # Đổi thành 'products' để khớp với template
+        'products': product_list,
         'keyword': keyword,
     })

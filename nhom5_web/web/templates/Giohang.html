@@ -5,8 +5,12 @@
     <meta charset="UTF-8">
     <title>Giỏ hàng</title>
     <link rel="stylesheet" href="{% static 'css/Giohang.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/grid.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
+    {% include "header.html" %}
     <div class="content">
         <div class="grid">
             <div class="row">
@@ -33,12 +37,29 @@
                                             <span>{{ item.product_name }}</span>
                                         </td>
                                         <td>
-                                            <button>-</button>
+                                            <form action="{% url 'cap_nhat_so_luong' %}" method="post" style="display:inline;">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="product_MaSp" value="{{ item.MaSp }}">
+                                                <input type="hidden" name="action" value="decrease">
+                                                <button type="submit" class="quantity-btn">-</button>
+                                            </form>
                                             <span>{{ item.quantity }}</span>
-                                            <button>+</button>
+                                            <form action="{% url 'cap_nhat_so_luong' %}" method="post" style="display:inline;">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="product_MaSp" value="{{ item.MaSp }}">
+                                                <input type="hidden" name="action" value="increase">
+                                                <button type="submit" class="quantity-btn">+</button>
+                                            </form>
                                         </td>
                                         <td>
                                             <span>{{ item.total_price|floatformat:0 }}₫</span>
+                                        </td>
+                                        <td>
+                                            <form action="{% url 'xoa_san_pham_gio' %}" method="post" style="display:inline;">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="product_MaSp" value="{{ item.MaSp }}">
+                                                <button type="submit" class="remove-btn">Xóa</button>
+                                            </form>
                                         </td>
                                     </tr>
                                     {% endfor %}
@@ -60,5 +81,11 @@
             </div>
         </div>
     </div>
+    <form action="{% url 'them_vao_gio' %}" method="post" class="add-to-cart-form">
+        {% csrf_token %}
+        <input type="hidden" name="product_MaSp" value="{{ product.MaSp }}">
+        <button type="submit" class="add-to-cart-btn">Thêm vào giỏ hàng</button>
+    </form>
+    {% include "footer.html" %}
 </body>
 </html>

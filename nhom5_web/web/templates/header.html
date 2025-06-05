@@ -1,0 +1,54 @@
+{% load static %}
+<div class="header">
+    <div class="header__part1">
+        <a href="{% url 'homePage' %}" class="header__homePage-link">
+            <img src="{% static 'img/logo/logo.webp' %}" alt="" class="header__logo">
+        </a>
+        <div class="header__searchContainer">
+            <form action="{% url 'timkiem' %}" method="get">
+                <input type="text" name="q" class="searchContainer__input" placeholder="Nhập sản phẩm cần tìm">
+                <button type="submit" class="searchContainer__searchBtn">
+                    <i class="fa-solid fa-magnifying-glass searchContainer__searchIcon"></i>
+                </button>
+            </form>
+        </div>
+        <div class="header__phoneNumber hideOnLg hideOnMd hideOnSm hideOnXsm">
+            <div class="phoneNumber__hotline header__phoneNumber--separate">
+                <span class="phoneNumber__hotline-text">Hotline</span>
+                <span class="phoneNumber__hotlineNumber">1900 9006</span>
+            </div>
+            <div class="phoneNumber__purchase header__phoneNumber--separate">
+                <span class="phoneNumber__purchase-text">Mua hàng</span>
+                <span class="phoneNumber__purchaseNumber">0916 304 838</span>
+            </div>
+            <div class="phoneNumber__technicalSupport">
+                <span class="phoneNumber__technicalSupport-text">Hỗ trợ kỹ thuật</span>
+                <span class="phoneNumber__technicalSupportNumber">0915 921 926</span>
+            </div>
+        </div>
+        <div class="header__user">
+            <i class="fa-solid fa-user header__userIcon"></i>
+            <div class="header__user-DropDownMenu">
+                <span class="user__DropDownMenu-Arrow"></span>
+                <div onclick="signUpForm()" class="user__DropDownMenu-Account">
+                    <span class="DropDownMenu-Account__text">Đăng ký</span>
+                </div>
+                <div onclick="logInForm()" class="user__DropDownMenu-LogOut">
+                    <span class="DropDownMenu-Account__text">Đăng nhập</span>
+                </div>
+            </div>
+        </div>
+        <div class="header_shoppingCart">
+            <a href="{% url 'giohang' %}">
+                <i class="fa-solid fa-cart-shopping header__shoppingCartIcon"></i>
+            </a>
+            <div class="header_shoppingCart-info">
+                <span class="shoppingCart-info__DropDownMenu-Arrow"></span>
+                <!-- Có thể thêm code giỏ hàng mini ở đây nếu cần -->
+            </div>
+        </div>
+    </div>
+    <div class="header__part2">
+        <!-- Copy phần category và navBar từ homePage.html nếu có -->
+    </div>
+</div>

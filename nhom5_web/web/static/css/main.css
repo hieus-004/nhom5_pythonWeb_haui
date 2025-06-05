@@ -2965,3 +2965,20 @@
     cursor: pointer;
     color: var(--orange1);
 }
+.add-to-cart-btn {
+    background: #0050c8 !important;
+    color: #fff !important;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 18px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.add-to-cart-btn:hover {
+    background: #003a8c;
+}
