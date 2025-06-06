@@ -16,8 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from payment import views as payment_views
+from pay_web.payment import views as payment_views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',payment_views.get_pay),
+    path('',payment_views.payment_view, name='payment_view'),
 ]

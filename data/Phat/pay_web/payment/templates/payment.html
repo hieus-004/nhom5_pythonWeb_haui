@@ -184,6 +184,31 @@
                     </div>
                 </form>
             </div>
+            <div class="pay-right">
+                <div class="pay-right-title">
+                    <h1>Thông tin đơn hàng</h1>
+                </div>
+                <div class="pay-right-content">
+                    <div class="pay-right-content-header">
+                        <p class="pay-right-content-item">Sản phẩm</p>
+                        <p class="pay-right-content-item">Giá</p>
+                        <p class="pay-right-content-item">Số lượng</p>
+                        <p class="pay-right-content-item">Tổng tiền</p>
+                    </div>
+                    {% for item in cart_items %}
+                    <div class="pay-right-content-row">
+                        <p class="pay-right-content-item">{{ item.SanPham.TenSp }}</p>
+                        <p class="pay-right-content-item">{{ item.SanPham.Gia|floatformat:0 }}đ</p>
+                        <p class="pay-right-content-item">{{ item.SoLuong }}</p>
+                        <p class="pay-right-content-item">{{ item.SanPham.Gia|floatformat:0|add:""|add:item.SoLuong|floatformat:0 }}đ</p>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="pay-right-total">
+                <p>Tổng tiền:</p>
+                <span>{{ tong_tien|floatformat:0 }}đ</span>
+            </div>
+                <button type="submit" class="pay-btn">Thanh toán</button>
         </div>
         <script src="" async defer></script>
     </body>
