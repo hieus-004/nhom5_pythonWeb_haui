@@ -16,10 +16,12 @@
             <a href="homePage.html" class="header__homePage-link">
                 <img src="assets/img/logo/logo.webp" alt="" class="header__logo">
             </a>
-            <div class="header__searchContainer">
-                <input type="text" class="searchContainer__input" placeholder="Nhập sản phẩm cần tìm">
-                <i class="fa-solid fa-magnifying-glass searchContainer__searchIcon"></i>
-            </div>
+            <form action="{% url 'timkiem' %}" method="get" class="header__searchContainer">
+                <input type="text" name="q" class="searchContainer__input" placeholder="Nhập sản phẩm cần tìm">
+                <button type="submit" class="searchContainer__searchButton">
+                    <i class="fa-solid fa-magnifying-glass searchContainer__searchIcon"></i>
+                </button>
+            </form>
             <div class="header__phoneNumber hideOnLg hideOnMd hideOnSm hideOnXsm">
                 <div class="phoneNumber__hotline header__phoneNumber--separate">
                     <span class="phoneNumber__hotline-text">
@@ -46,37 +48,38 @@
                     </span>
                 </div>
             </div>
-            <div class="header__user">
+           <div class="header__user">
                 <i class="fa-solid fa-user header__userIcon"></i>
                 <div class="header__user-DropDownMenu">
                     <span class="user__DropDownMenu-Arrow"></span>
-                    <div onclick="signUpForm()" class="user__DropDownMenu-Account">
-                        <span class="DropDownMenu-Account__text">
-                            Đăng ký 
-                        </span>
-                    </div>
-                    <div onclick="logInForm()" class="user__DropDownMenu-LogOut">
-                        <span class="DropDownMenu-Account__text">
-                            Đăng nhập 
-                        </span>
-                    </div>
+                    {% if request.session.user_id %}
+                        <div class="user__DropDownMenu-Account">
+                            <a href="{% url 'thongtintaikhoan' %}" class="DropDownMenu-Account__text">
+                                Tài khoản
+                            </a>
+                        </div>
+                        <div class="user__DropDownMenu-LogOut">
+                            <a href="{% url 'dangxuat' %}" class="DropDownMenu-Account__text">
+                                Đăng xuất
+                            </a>
+                        </div>
+                    {% else %}
+                        <div class="user__DropDownMenu-Account">
+                            <a href="{% url 'dangky' %}" class="DropDownMenu-Account__text">
+                                Đăng ký 
+                            </a>
+                        </div>
+                        <div class="user__DropDownMenu-LogOut">
+                            <a href="{% url 'dangnhap' %}" class="DropDownMenu-Account__text">
+                                Đăng nhập 
+                            </a>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
-            <div class="header_shoppingCart">
+            <a href="{% url 'giohang' %}" class="header_shoppingCart">
                 <i class="fa-solid fa-cart-shopping header__shoppingCartIcon"></i>
-                <div class="header_shoppingCart-info">
-                    <span class="shoppingCart-info__DropDownMenu-Arrow"></span>
-                    <!--shopping cart-->
-                    <div class="shoppingCart__cartAndPay">
-                        <div class="cartAndPay__cartButton">
-                            Giỏ hàng
-                        </div>
-                        <div class="cartAndPay__payButton">
-                            Thanh toán
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </a>
         </div>
         <div class="header__part2">
 
@@ -88,9 +91,9 @@
                 </span>
                 <div class="header__categoryList">
                     {% for muc in danhMuc %}
-                    <div class="categoryList__categoryItem categoryList__item{{ forloop.counter }}">
+                    <a href="{% url 'timkiem' %}?category_id={{ muc.MaDM }}" class="categoryList__categoryItem categoryList__item{{ forloop.counter }}">
                         {{ muc.TenDM }}
-                    </div>
+                    </a>
                     {% endfor %}
                 </div>
             </div>
@@ -105,87 +108,28 @@
                 </div>
                 <div class="header__categoryForBelowLarge-list">
                     {% for muc in danhMuc %}
-                    <div class="categoryForBelowLarge__item categoryForBelowLarge__item{{ forloop.counter }}">
+                    <a href="{% url 'timkiem' %}?category_id={{ muc.MaDM }}"  class="categoryForBelowLarge__item categoryForBelowLarge__item{{ forloop.counter }}">
                         {{ muc.TenDM }}
-                    </div>
+                    </a>
                     {% endfor %}
                 </div>
             </div>
 
             <!--header for all devices-->
             <div class="header__navBar  hideOnMd hideOnSm hideOnXsm">
-                <span class="header__navBar-item header__navBar-service">
-                    <a href="servicePage.html" class="header__navBar-service-text">
-                        Dịch vụ
-                    </a>
-                    <i class="fa-solid fa-angle-down header__navBar-service-arrow"></i>
-                    <div class="navBar-service__subMenuContainer">
-                        <div class="navBar-service__subMenu">
-                            <span class="navBar-service__subMenu-item navBar-service__subMenu-item1">
-                                Lắp đặt thiết bị điện gia dụng
-                            </span>
-                            <span class="navBar-service__subMenu-item navBar-service__subMenu-item2">
-                                Sửa chữa - bảo trì thiết bị
-                            </span>
-                            <span class="navBar-service__subMenu-item navBar-service__subMenu-item3">
-                                Vệ sinh - Bảo dưỡng
-                            </span>
-                            <span class="navBar-service__subMenu-item navBar-service__subMenu-item4">
-                                Giao hàng và lắp đặt tại nhà
-                            </span>
-                            <span class="navBar-service__subMenu-item navBar-service__subMenu-item5">
-                                Tư vấn và dùng thử sản phẩm
-                            </span>
-                            <span class="navBar-service__subMenu-item navBar-service__subMenu-item6">
-                                Đổi trả và bảo hành tại nhà
-                            </span>
-                            <span class="navBar-service__subMenu-item navBar-service__subMenu-item7">
-                                Thuê thiết bị
-                            </span>
-                        </div>
-                    </div>     
-                </span>
-                <span class="header__navBar-item header__navBar-solution">
-                    <a href="solutionPage.html" class="header__navBar-service-text">
-                        Giải pháp
-                    </a>
-                    <i class="fa-solid fa-angle-down header__navBar-solution-arrow"></i>   
-                    <div class="navBar-solution__subMenuContainer">
-                        <div class="navBar-solution__subMenu">
-                            <span class="navBar-solution__subMenu-item navBar-solution__subMenu-item1">
-                                Nhà bếp thông minh
-                            </span>
-                            <span class="navBar-solution__subMenu-item navBar-solution__subMenu-item2">
-                                Giặt ủi tiết kiệm và hiện đại
-                            </span>
-                            <span class="navBar-solution__subMenu-item navBar-solution__subMenu-item3">
-                                Làm mát và điều hòa không khí tối ưu
-                            </span>
-                            <span class="navBar-solution__subMenu-item navBar-solution__subMenu-item4">
-                                Chiếu sáng và điện dân dụng an toàn
-                            </span>
-                            <span class="navBar-solution__subMenu-item navBar-solution__subMenu-item5">
-                                Nhà thông minh
-                            </span>
-                            <span class="navBar-solution__subMenu-item navBar-solution__subMenu-item6">
-                                An ninh và an toàn cho gia đình
-                            </span>
-                        </div>
-                    </div>  
-                </span>
-                <a href="newsPage.html" class="header__navBar-item header__navBar-news">
+                <a href="{% url 'tintuc' %}" class="header__navBar-item header__navBar-news">
                     Tin tức
                 </a>
-                <a href="introductionPage.html" class="header__navBar-item header__navBar-introduction">
+                <a href="{% url 'gioithieu' %}" class="header__navBar-item header__navBar-introduction">
                     Giới thiệu
                 </a>
-                <a href="onlineBillPage.html" class="header__navBar-item header__navBar-onlineBill">
+                <a href="{% url 'hoadon' %}" class="header__navBar-item header__navBar-onlineBill">
                     HĐ điện tử
                 </a>
                 <span class="header__navBar-item header__navBar-warranty">
                     Tiếp nhận BH
                 </span>
-                <a href="recruitmentPage.html" class="header__navBar-item header__navBar-recruitment">
+                <a href="{% url 'tuyendung' %}" class="header__navBar-item header__navBar-recruitment">
                     Tuyển dụng
                 </a>
             </div>
@@ -193,28 +137,18 @@
             <!--header for all devices for mobile-->
             <div class="header__navBarForBelowLarge-container showOnMd showOnSm showOnXsm">
                 <div class="header__navBarForBelowLarge">
-                    <div class="header__navBarForBelowLarge-item header__navBarForBelowLarge-item1">
-                        <a href="servicePage.html" class="navBarForBelowLarge-item-text">
-                            Dịch vụ 
-                        </a>
-                    </div>
-                    <div class="header__navBarForBelowLarge-item header__navBarForBelowLarge-item2">
-                        <a href="solutionPage.html" class="navBarForBelowLarge-item-text">
-                            Giải pháp                       
-                        </a>
-                    </div>
                     <div class="header__navBarForBelowLarge-item header__navBarForBelowLarge-item3">
-                        <a href="newsPage.html" class="navBarForBelowLarge-item-text">
+                        <a href="{% url 'tintuc' %}" class="navBarForBelowLarge-item-text">
                             Tin tức                        
                         </a>
                     </div>
                     <div class="header__navBarForBelowLarge-item header__navBarForBelowLarge-item4">
-                        <a href="introductionPage.html" class="navBarForBelowLarge-item-text">
+                        <a href="{% url 'gioithieu' %}" class="navBarForBelowLarge-item-text">
                             Giới thiệu                       
                         </a>
                     </div>
                     <div class="header__navBarForBelowLarge-item header__navBarForBelowLarge-item5">
-                        <a href="onlineBillPage.html" class="navBarForBelowLarge-item-text">
+                        <a href="{% url 'hoadon' %}" class="navBarForBelowLarge-item-text">
                             HĐ điện tử                        
                         </a>
                     </div>
@@ -222,7 +156,7 @@
                             Tiếp nhận BH                       
                     </div>
                     <div class="header__navBarForBelowLarge-item header__navBarForBelowLarge-item7">
-                        <a href="recruitmentPage.html" class="navBarForBelowLarge-item-text">
+                        <a href="{% url 'tuyendung' %}" class="navBarForBelowLarge-item-text">
                             Tuyển dụng                        
                         </a>
                     </div>
@@ -331,34 +265,17 @@
                             <div class="row">
                                 {% for product in sale_products %}
                                 <div class="column xxl-2-4 md-4 sm-6 xsm-6">
-                                    <div class="content__saleProduct-item content__saleProduct-item{{ for.counter }}">
+                                    <a href="{% url 'chitietsp' product.MaSp %}" class="content__saleProduct-item content__saleProduct-item{{ for.counter }}">
                                         <img src="" alt="" class="saleProduct-item__img">
                                         <span class="saleProduct-item__name">
-                                            {{ product.TenSP }}
+                                            {{ product.TenSp }}
                                         </span>
                                         <span class="saleProduct-item__price">
-                                            {{ product.Gia }}
+                                            {{ product.Gia }} đ
                                         </span>
-                                    </div>
+                                    </a>
                                 </div>
                                 {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="content__saleProductConainer">
-                <div class="content__saleProductHeadingContainer">
-                    <span class="content__saleProductHeading-mark"></span>
-                    <span class="content__saleProductHeading">
-                        Sản phẩm khuyến mãi
-                    </span>
-                </div>
-                <div class="row">
-                    <div class="column xxl-12">
-                        <div class="content__saleProduct">
-                            <div class="row">
-                                <!-- sale product container -->
                             </div>
                         </div>
                     </div>

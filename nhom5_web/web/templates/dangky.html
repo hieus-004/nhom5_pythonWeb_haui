@@ -1,0 +1,54 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Tài khoản</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/Dangky.css' %}">
+</head>
+<body>
+
+
+    
+    <div class="account-container">
+        <div class="account-title">Tài khoản</div>
+        <div class="account-desc">
+            Nếu bạn chưa có tài khoản, hãy đăng ký tại đây.<br>
+            Nếu đã có tài khoản, nhấn <b>Đăng nhập</b> để chuyển sang trang đăng nhập.
+        </div>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li style="color: red;">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <form class="account-form" method="post">
+            {% csrf_token %}
+            <div class="account-form-group">
+                <label for="lastname">Họ:</label>
+                <input type="text" id="lastname" name="lastname" placeholder="Họ">
+            </div>
+            <div class="account-form-group">
+                <label for="firstname">Tên:</label>
+                <input type="text" id="firstname" name="firstname" placeholder="Tên">
+            </div>
+            <div class="account-form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Email">
+            </div>
+            <div class="account-form-group">
+                <label for="password">Mật khẩu:</label>
+                <input type="password" id="password" name="password" placeholder="Mật khẩu">
+            </div>
+            <div class="account-form-actions">
+                <button type="submit" class="btn-primary">Đăng ký</button>
+                <a href="{% url 'dangnhap' %}" class="account-link">Đăng nhập</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

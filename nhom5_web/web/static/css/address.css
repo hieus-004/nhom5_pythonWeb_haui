@@ -1,0 +1,93 @@
+/* filepath: e:\pyton\nhom5_pythonWeb_haui\data\Canh\web_python-main\web\tech_part\static\css\address.css */
+body {
+    font-family: Arial, sans-serif;
+    background: #fff;
+    margin: 0;
+    padding: 0;
+}
+.address-container {
+    display: flex;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 30px auto;
+}
+.address-left {
+    flex: 1 1 35%;
+    padding: 20px;
+}
+.address-right {
+    flex: 1 1 65%;
+    padding: 20px;
+    background: #fafafa;
+    border-radius: 8px;
+    min-width: 400px;
+    position: relative;
+}
+.btn-primary {
+    background: #ff6600;
+    color: #fff;
+    border: none;
+    padding: 10px 28px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 18px;
+    margin-top: 10px;
+}
+.btn-primary:hover {
+    background: #e65c00;
+}
+.btn-back {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #0d223f;
+    color: #fff;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.form-row {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+}
+.form-row label {
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+.form-row input[type="text"] {
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 15px;
+}
+.form-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+.btn-cancel {
+    background: #eee;
+    color: #333;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.btn-cancel:hover {
+    background: #ccc;
+}
+@media (max-width: 900px) {
+    .address-container {
+        flex-direction: column;
+    }
+    .address-right {
+        min-width: unset;
+    }
+}

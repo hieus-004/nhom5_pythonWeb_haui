@@ -1,0 +1,438 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Chi Tiết Sản Phẩm</title>
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <link rel="stylesheet" href="{% static 'css/grid.css' %}">
+  <link rel="stylesheet" href="{% static 'css/chitietsp.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<div class="header">
+        <div class="header__part1">
+            <a href="homePage.html" class="header__homePage-link">
+                <img src="assets/img/logo/logo.webp" alt="" class="header__logo">
+            </a>
+            <form action="{% url 'timkiem' %}" method="get" class="header__searchContainer">
+                <input type="text" name="q" class="searchContainer__input" placeholder="Nhập sản phẩm cần tìm">
+                <button type="submit" class="searchContainer__searchButton">
+                    <i class="fa-solid fa-magnifying-glass searchContainer__searchIcon"></i>
+                </button>
+            </form>
+            <div class="header__phoneNumber hideOnLg hideOnMd hideOnSm hideOnXsm">
+                <div class="phoneNumber__hotline header__phoneNumber--separate">
+                    <span class="phoneNumber__hotline-text">
+                        Hotline
+                    </span>
+                    <span class="phoneNumber__hotlineNumber">
+                        1900 9006
+                    </span>
+                </div>
+                <div class="phoneNumber__purchase header__phoneNumber--separate">
+                    <span class="phoneNumber__purchase-text">
+                        Mua hàng
+                    </span>
+                    <span class="phoneNumber__purchaseNumber">
+                        0916 304 838
+                    </span>
+                </div>
+                <div class="phoneNumber__technicalSupport">
+                    <span class="phoneNumber__technicalSupport-text">
+                        Hỗ trợ kỹ thuật
+                    </span>
+                    <span class="phoneNumber__technicalSupportNumber">
+                        0915 921 926
+                    </span>
+                </div>
+            </div>
+           <div class="header__user">
+                <i class="fa-solid fa-user header__userIcon"></i>
+                <div class="header__user-DropDownMenu">
+                    <span class="user__DropDownMenu-Arrow"></span>
+                    {% if request.session.user_id %}
+                        <div class="user__DropDownMenu-Account">
+                            <a href="{% url 'thongtintaikhoan' %}" class="DropDownMenu-Account__text">
+                                Tài khoản
+                            </a>
+                        </div>
+                        <div class="user__DropDownMenu-LogOut">
+                            <a href="{% url 'dangxuat' %}" class="DropDownMenu-Account__text">
+                                Đăng xuất
+                            </a>
+                        </div>
+                    {% else %}
+                        <div class="user__DropDownMenu-Account">
+                            <a href="{% url 'dangky' %}" class="DropDownMenu-Account__text">
+                                Đăng ký 
+                            </a>
+                        </div>
+                        <div class="user__DropDownMenu-LogOut">
+                            <a href="{% url 'dangnhap' %}" class="DropDownMenu-Account__text">
+                                Đăng nhập 
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <a href="{% url 'giohang' %}" class="header_shoppingCart">
+                <i class="fa-solid fa-cart-shopping header__shoppingCartIcon"></i>
+            </a>
+        </div>
+        <div class="header__part2">
+
+            <!--header for desktop-->
+            <div class="header__category hideOnMd hideOnSm hideOnXsm"> 
+                <i class="fa-solid fa-bars header__categoryIcon"></i>
+                <span class="header__categoryText">
+                    Danh mục
+                </span>
+                <div class="header__categoryList">
+                    {% for muc in danhMuc %}
+                    <a href="{% url 'timkiem' %}?category_id={{ muc.MaDM }}" class="categoryList__categoryItem categoryList__item{{ forloop.counter }}">
+                        {{ muc.TenDM }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!--header for mobile-->
+            <div class="header__categoryForBelowLarge showOnMd showOnSm showOnXsm">
+                <div class="header__categoryForBelowLarge-heading">
+                    <i class="fa-solid fa-bars header__categoryForBelowLarge-icon"></i>
+                    <span class="header__categoryForBelowLarge-heading">
+                        Danh mục
+                    </span>
+                </div>
+                <div class="header__categoryForBelowLarge-list">
+                    {% for muc in danhMuc %}
+                    <a href="{% url 'timkiem' %}?category_id={{ muc.MaDM }}"  class="categoryForBelowLarge__item categoryForBelowLarge__item{{ forloop.counter }}">
+                        {{ muc.TenDM }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!--header for all devices-->
+            <div class="header__navBar  hideOnMd hideOnSm hideOnXsm">
+                <a href="{% url 'tintuc' %}" class="header__navBar-item header__navBar-news">
+                    Tin tức
+                </a>
+                <a href="{% url 'gioithieu' %}" class="header__navBar-item header__navBar-introduction">
+                    Giới thiệu
+                </a>
+                <a href="{% url 'hoadon' %}" class="header__navBar-item header__navBar-onlineBill">
+                    HĐ điện tử
+                </a>
+                <span class="header__navBar-item header__navBar-warranty">
+                    Tiếp nhận BH
+                </span>
+                <a href="{% url 'tuyendung' %}" class="header__navBar-item header__navBar-recruitment">
+                    Tuyển dụng
+                </a>
+            </div>
+
+            <!--header for all devices for mobile-->
+            <div class="header__navBarForBelowLarge-container showOnMd showOnSm showOnXsm">
+                <div class="header__navBarForBelowLarge">
+                    <div class="header__navBarForBelowLarge-item header__navBarForBelowLarge-item3">
+                        <a href="{% url 'tintuc' %}" class="navBarForBelowLarge-item-text">
+                            Tin tức                        
+                        </a>
+                    </div>
+                    <div class="header__navBarForBelowLarge-item header__navBarForBelowLarge-item4">
+                        <a href="{% url 'gioithieu' %}" class="navBarForBelowLarge-item-text">
+                            Giới thiệu                       
+                        </a>
+                    </div>
+                    <div class="header__navBarForBelowLarge-item header__navBarForBelowLarge-item5">
+                        <a href="{% url 'hoadon' %}" class="navBarForBelowLarge-item-text">
+                            HĐ điện tử                        
+                        </a>
+                    </div>
+                    <div class="header__navBarForBelowLarge-item header__navBarForBelowLarge-item6">
+                            Tiếp nhận BH                       
+                    </div>
+                    <div class="header__navBarForBelowLarge-item header__navBarForBelowLarge-item7">
+                        <a href="{% url 'tuyendung' %}" class="navBarForBelowLarge-item-text">
+                            Tuyển dụng                        
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+<!-- ▾ Breadcrumb -->
+<div class="content" >
+  <div class="grid">
+    <div class="breadcrumb">
+      <a href="/">Trang chủ</a> &gt; <a href="#">Thiết bị văn phòng</a> &gt;
+      <span>{{ sanpham.TenSp }}</span>
+    </div>
+
+    <!-- ▾ Khối sản phẩm -->
+    <div class="product-container">
+      <!-- Ảnh -->
+      <div class="product-left">
+        <img src="{{ sanpham.AnhChinh.url }}" alt="{{ sanpham.TenSp }}" class="main-image">
+        <div class="thumbnail-images">
+          {% for img in sanpham.AnhPhu.all %}
+            <img src="{{ img.url }}" alt="thumb">
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Thông tin -->
+      <div class="product-right">
+        <h2>{{ sanpham.TenSp }}</h2>
+        <p>Thương hiệu: <span class="brand">{{ sanpham.HangSX }}</span></p>
+        <p class="price">{{ sanpham.Gia|intcomma }}₫</p>
+
+        <ul>
+          <li>{{ sanpham.CPU }}</li>
+          <li>{{ sanpham.Ram }}</li>
+          <li>{{ sanpham.OCung }}</li>
+          <li>{{ sanpham.KhoiLuong }}</li>
+        </ul>
+
+        <p><strong>Bảo hành:</strong> {{ sanpham.BaoHanh }}</p>
+
+        <!-- ▾ Số lượng -->
+        <div class="quantity">
+          <label for="quantity">Số lượng:</label>
+          <button type="button" onclick="changeQuantity(-1)">−</button>
+          <input type="text" id="quantity" value="1" readonly>
+          <button type="button" onclick="changeQuantity(1)">＋</button>
+        </div>
+
+        <!-- ▾ Nút hành động -->
+        <div class="buttons">
+          <!-- Mua ngay: submit chuyển trang -->
+          <form id="buy-now-form" method="post" action="/payment/">
+            {% csrf_token %}
+            <input type="hidden" name="product_id" value="{{ sanpham.MaSp }}">
+            <input type="hidden" name="quantity" id="buy-now-qty" value="1">
+            <button type="submit" class="buy-now">MUA NGAY</button>
+          </form>
+
+          <!-- Thêm vào giỏ: AJAX, không rời trang -->
+          <form id="add-cart-form" method="post" action="/add_to_cart/">
+            {% csrf_token %}
+            <input type="hidden" name="product_id" value="{{ sanpham.MaSp }}">
+            <input type="hidden" name="quantity" id="add-cart-qty" value="1">
+            <button type="submit" class="add-cart">THÊM VÀO GIỎ</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- ▾ Gợi ý mua kèm -->
+      <div class="suggested">
+        <h3>Sản phẩm tương tư</h3>
+        <div class="product-list vertical-list">
+          {% for p in sanpham_goi_y %}
+            <div class="product-item">
+              <a href="{% url 'chitietsp' p.MaSp %}">
+                <img src="{{ p.AnhChinh.url }}" alt="{{ p.TenSp }}">
+                <div>
+                  <p>{{ p.TenSp }}</p>
+                  <p class="price">{{ p.Gia|intcomma }}₫</p>
+                </div>
+              </a>
+            </div>
+          {% empty %}
+            <p>Không có gợi ý phù hợp.</p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <!-- ▾ Thông số kỹ thuật -->
+    <div class="technical-specs">
+      <h3><span class="section-title">Thông tin kỹ thuật</span></h3>
+      <table id="specs-table">
+        <thead>
+          <tr><th>Thông số</th><th>Giá trị</th></tr>
+        </thead>
+        <tbody>
+          {% for ts in sanpham.thongsokythuat_set.all %}
+            <tr><td>{{ ts.ten }}</td><td>{{ ts.gia_tri }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- ▾ Sản phẩm liên quan
+<div class="related-products">
+  <h3><span class="section-title">Sản Phẩm Liên Quan</span></h3>
+  <div class="product-list">
+    {% for p in sanpham_lien_quan %}
+      <div class="product-item">
+        <a href="{% url 'chitietsp' p.MaSp %}">
+            <img src="{{ p.AnhChinh.url }}" alt="{{ p.TenSp }}">
+            <p>{{ p.TenSp }}</p>
+        </a>
+        {% if p.Gia %}
+          <p class="price">{{ p.Gia|intcomma }}₫</p>
+        {% else %}
+          <p class="price-contact">Liên hệ</p>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</div> -->
+<footer class="footer">
+        <div class="grid">
+            <div class="row">
+                <div class="column xxl-12">
+                    <div class="footer__shopInfoContainer">
+                        <div class="row">
+                            <div class="column xxl-3 md-4 sm-6 xsm-6">
+                                <div class="footer__shopInfo">
+                                    <div class="footer__shopInfo-item">
+                                        <div class="shopInfo-item__icon-container">
+                                            <i class="fa-solid fa-building shopInfo-item__icon"></i>
+                                        </div>
+                                        <span class="shopInfo-item__name">
+                                            Công ty cổ phần đầu tư phát triển công nghệ Robo
+                                        </span>
+                                    </div>
+                                    <div class="footer__shopInfo-item">
+                                        <div class="shopInfo-item__icon-container">
+                                            <i class="fa-solid fa-location-dot shopInfo-item__icon"></i>
+                                        </div>
+                                        <span class="shopInfo-item__name">
+                                            159 Cách Mạng Tháng Tám, Phường 05, Quận 3, TP. HCM, VN
+                                        </span>
+                                    </div>
+                                    <div class="footer__shopInfo-item">
+                                        <div class="shopInfo-item__icon-container">
+                                            <i class="fa-solid fa-phone shopInfo-item__icon"></i>
+                                        </div>
+                                        <span class="shopInfo-item__name">
+                                            1900 9006
+                                        </span>
+                                    </div>
+                                    <div class="footer__shopInfo-item">
+                                        <div class="shopInfo-item__icon-container">
+                                            <i class="fa-solid fa-envelope shopInfo-item__icon"></i>
+                                        </div>
+                                        <span class="shopInfo-item__name">
+                                            kinhdoanh@robo.vn
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column xxl-3 md-4 sm-6 xsm-6">
+                                <div class="footer__shopInfo">
+                                    <div class="footer__shopInfo-item2">
+                                        <span class="shopInfo-item2__heading">
+                                            Chính sách công ty
+                                        </span>
+                                        <span class="shopInfo-item2-item shopInfo-item2-item1">
+                                            Điều khoản dịch vụ
+                                        </span>
+                                        <span class="shopInfo-item2-item shopInfo-item2-item2">
+                                            Chính sách đổi/ trả - hoàn tiền
+                                        </span>
+                                        <span class="shopInfo-item2-item shopInfo-item2-item3">
+                                            Chính sách bảo mật
+                                        </span>
+                                        <span class="shopInfo-item2-item shopInfo-item2-item4">
+                                            Phương thức thanh toán
+                                        </span>
+                                        <span class="shopInfo-item2-item shopInfo-item2-item5">
+                                            Phương thức giao hàng
+                                        </span>
+                                        <span class="shopInfo-item2-item shopInfo-item2-item6">
+                                            Chính sách bảo hành
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column xxl-3 md-4 sm-0 xsm-0">
+                                <div class="footer__shopInfo">
+                                    <div class="footer__shopInfo-item3">
+                                        <span class="shopInfo-item3__heading">
+                                            Kết nối với chúng tôi
+                                        </span>
+                                        <span class="shopInfo-item3-item">
+                                            <i class="fa-brands fa-facebook shopInfo-item3-item-icon"></i>
+                                            <span class="shopInfo-item3-item-text">
+                                                Facebook
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column xxl-3 md-12 sm-12 xsm-12"> 
+                                <div class="footer__shopInfo">
+                                    <div class="footer__shopInfo-item4">
+                                        <span class="shopInfo-item4__heading">
+                                            Hỗ trợ thanh toán
+                                        </span>
+                                        <div class="footer__shopInfo-item4-item">
+                                            <img src="assets/img/icon/payMethod_icon.webp" alt="" class="shopInfo-item4-item-img">
+                                            <img src="assets/img/icon/boCongThuongAprove.webp" alt="" class="shopInfo-item4-item-img">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer__ending">
+                        <span class="footer__ending-text1">
+                            Công Ty Cổ Phần Đầu Tư Phát Triển Công Nghệ Robo
+                        </span>
+                        <span class="footer__ending-text2">
+                            © Copyright/ 2000-2020 Công Ty Cổ Phần Đầu Tư Phát Triển Công Nghệ Robo / GPĐKKD số 0301982582 do Sở KHĐT TP.HCM cấp ngày 28.04.2000
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+<!-- ▾ Script -->
+<script>
+  /* Tăng/giảm số lượng & đồng bộ cả hai form ẩn */
+  function changeQuantity(delta) {
+    const qInput  = document.getElementById('quantity');
+    let   qty     = parseInt(qInput.value || '1', 10) + delta;
+    if (qty < 1) qty = 1;
+    qInput.value = qty;
+    document.getElementById('buy-now-qty').value = qty;
+    document.getElementById('add-cart-qty').value = qty;
+  }
+
+  /* Chặn reload khi “Thêm vào giỏ”  */
+  document.getElementById('add-cart-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    try {
+      const res = await fetch(form.action, {
+        method : 'POST',
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'Content-Type'    : 'application/x-www-form-urlencoded',
+          'X-CSRFToken'     : form.querySelector('[name=csrfmiddlewaretoken]').value
+        },
+        body   : new URLSearchParams(new FormData(form))
+      });
+      const data = await res.json();
+      if (data.success) {
+        alert(data.message); // Hiện thông báo thành công
+      } else {
+        alert(data.message || 'Lỗi khi thêm vào giỏ');
+      }
+    } catch (err) {
+      alert('Lỗi khi thêm vào giỏ');
+    }
+  });
+</script>
+
+</body>
+</html>

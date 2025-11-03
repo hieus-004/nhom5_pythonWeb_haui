@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Địa chỉ của bạn</title>
+    <link rel="stylesheet" href="../static/css/address.css">
+</head>
+<body>
+<div class="address-container">
+    <div class="address-left">
+        <h2>Địa chỉ của bạn</h2>
+        <button class="btn-primary" id="addAddressBtn">+ Thêm địa chỉ</button>
+        <div class="address-info">
+            <div>Tên tài khoản: <span>{{ user.Email }}</span> (Địa chỉ mặc định)</div>
+            <div>Công ty: <span>{{ diachi.CongTy }}</span></div>
+            <div>Địa chỉ: <span>{{ diachi.DiaChi1 }}</span>, <span>{{ diachi.QuocGia }}</span></div>
+            <div>Quốc tịch: <span>{{ diachi.QuocGia }}</span></div>
+            <div>Số điện thoại: <span>{{ diachi.SoDienThoai }}</span></div>
+        </div>
+        <button class="btn-primary" id="editAddressBtn">Chỉnh sửa địa chỉ</button>
+    </div>
+    <div class="address-right" id="addressRight">
+        <button class="btn-back" onclick="window.history.back()">Quay lại</button>
+        <form id="addressForm" method="post">
+            {% csrf_token %}
+            <div class="form-row">
+                <label>Tên*</label>
+                <input type="text" id="formFirstname" name="firstname" value="{{ diachi.Ten }}" required>
+            </div>
+            <div class="form-row">
+                <label>Họ*</label>
+                <input type="text" id="formLastname" name="lastname" value="{{ diachi.Ho }}" required>
+            </div>
+            <div class="form-row">
+                <label>Công ty</label>
+                <input type="text" id="formCompany" name="company" value="{{ diachi.CongTy }}">
+            </div>
+            <div class="form-row">
+                <label>Địa chỉ*</label>
+                <input type="text" id="formAddress" name="address" value="{{ diachi.DiaChi1 }}" required>
+            </div>
+            <div class="form-row">
+                <label>Địa chỉ 2*</label>
+                <input type="text" id="formAddress2" name="address2" value="{{ diachi.DiaChi2 }}" required>
+            </div>
+            <div class="form-row">
+                <label>Quốc gia*</label>
+                <input type="text" id="formCountry" name="country" value="{{ diachi.QuocGia|default:'Vietnam' }}" required>
+            </div>
+            <div class="form-row">
+                <label>Mã Zip</label>
+                <input type="text" id="formZip" name="zip" value="{{ diachi.MaZip }}">
+            </div>
+            <div class="form-row">
+                <label>Số điện thoại*</label>
+                <input type="text" id="formPhone" name="phone" value="{{ diachi.SoDienThoai }}" required>
+            </div>
+            <div class="form-actions" id="formActions">
+                <button type="submit" class="btn-primary" id="updateBtn">Cập nhật địa chỉ</button>
+                <button type="button" class="btn-cancel" id="cancelBtn" onclick="window.history.back()">Hủy</button>
+            </div>
+        </form>
+        {% if success %}
+        <div style="color:green;">Cập nhật địa chỉ thành công!</div>
+        {% endif %}
+    </div>
+    <div class="address-right" id="addAddressForm" style="display:none;">
+        <button class="btn-back" onclick="window.history.back()">Quay lại</button>
+        <form method="post" action="{% url 'address' %}">
+            {% csrf_token %}
+            <div class="form-row">
+                <label>Tên*</label>
+                <input type="text" name="firstname" required>
+            </div>
+            <div class="form-row">
+                <label>Họ*</label>
+                <input type="text" name="lastname" required>
+            </div>
+            <div class="form-row">
+                <label>Công ty</label>
+                <input type="text" name="company">
+            </div>
+            <div class="form-row">
+                <label>Địa chỉ*</label>
+                <input type="text" name="address" required>
+            </div>
+            <div class="form-row">
+                <label>Quốc gia*</label>
+                <input type="text" name="country" value="Vietnam" required>
+            </div>
+            <div class="form-row">
+                <label>Mã Zip</label>
+                <input type="text" name="zip">
+            </div>
+            <div class="form-row">
+                <label>Số điện thoại*</label>
+                <input type="text" name="phone" required>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">Thêm địa chỉ</button>
+                <button type="button" class="btn-cancel" onclick="document.getElementById('addAddressForm').style.display='none';document.getElementById('addressRight').style.display='block';">Hủy</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    document.getElementById('addAddressBtn').onclick = function() {
+        document.getElementById('addressRight').style.display = 'none';
+        document.getElementById('addAddressForm').style.display = 'block';
+    };
+</script>
+</body>
+</html>

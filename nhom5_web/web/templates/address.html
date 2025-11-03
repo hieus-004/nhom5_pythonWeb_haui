@@ -1,0 +1,276 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Địa chỉ của bạn</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/grid.css' %}">
+    <link rel="stylesheet" href="{% static 'css/address.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+    <div class="header">
+        <div class="header__part1">
+            <a href="homePage.html" class="header__homePage-link">
+                <img src="assets/img/logo/logo.webp" alt="" class="header__logo">
+            </a>
+            <form action="{% url 'timkiem' %}" method="get" class="header__searchContainer">
+                <input type="text" name="q" class="searchContainer__input" placeholder="Nhập sản phẩm cần tìm">
+                <button type="submit" class="searchContainer__searchButton">
+                    <i class="fa-solid fa-magnifying-glass searchContainer__searchIcon"></i>
+                </button>
+            </form>
+            <div class="header__phoneNumber hideOnLg hideOnMd hideOnSm hideOnXsm">
+                <div class="phoneNumber__hotline header__phoneNumber--separate">
+                    <span class="phoneNumber__hotline-text">
+                        Hotline
+                    </span>
+                    <span class="phoneNumber__hotlineNumber">
+                        1900 9006
+                    </span>
+                </div>
+                <div class="phoneNumber__purchase header__phoneNumber--separate">
+                    <span class="phoneNumber__purchase-text">
+                        Mua hàng
+                    </span>
+                    <span class="phoneNumber__purchaseNumber">
+                        0916 304 838
+                    </span>
+                </div>
+                <div class="phoneNumber__technicalSupport">
+                    <span class="phoneNumber__technicalSupport-text">
+                        Hỗ trợ kỹ thuật
+                    </span>
+                    <span class="phoneNumber__technicalSupportNumber">
+                        0915 921 926
+                    </span>
+                </div>
+            </div>
+           <div class="header__user">
+                <i class="fa-solid fa-user header__userIcon"></i>
+                <div class="header__user-DropDownMenu">
+                    <span class="user__DropDownMenu-Arrow"></span>
+                    {% if request.session.user_id %}
+                        <div class="user__DropDownMenu-Account">
+                            <a href="{% url 'thongtintaikhoan' %}" class="DropDownMenu-Account__text">
+                                Tài khoản
+                            </a>
+                        </div>
+                        <div class="user__DropDownMenu-LogOut">
+                            <a href="{% url 'dangxuat' %}" class="DropDownMenu-Account__text">
+                                Đăng xuất
+                            </a>
+                        </div>
+                    {% else %}
+                        <div class="user__DropDownMenu-Account">
+                            <a href="{% url 'dangky' %}" class="DropDownMenu-Account__text">
+                                Đăng ký 
+                            </a>
+                        </div>
+                        <div class="user__DropDownMenu-LogOut">
+                            <a href="{% url 'dangnhap' %}" class="DropDownMenu-Account__text">
+                                Đăng nhập 
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <a href="{% url 'giohang' %}" class="header_shoppingCart">
+                <i class="fa-solid fa-cart-shopping header__shoppingCartIcon"></i>
+            </a>
+        </div>
+        <div class="header__part2">
+
+            <!--header for desktop-->
+            <div class="header__category hideOnMd hideOnSm hideOnXsm"> 
+                <i class="fa-solid fa-bars header__categoryIcon"></i>
+                <span class="header__categoryText">
+                    Danh mục
+                </span>
+                <div class="header__categoryList">
+                    {% for muc in danhMuc %}
+                    <a href="{% url 'timkiem' %}?category_id={{ muc.MaDM }}" class="categoryList__categoryItem categoryList__item{{ forloop.counter }}">
+                        {{ muc.TenDM }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!--header for mobile-->
+            <div class="header__categoryForBelowLarge showOnMd showOnSm showOnXsm">
+                <div class="header__categoryForBelowLarge-heading">
+                    <i class="fa-solid fa-bars header__categoryForBelowLarge-icon"></i>
+                    <span class="header__categoryForBelowLarge-heading">
+                        Danh mục
+                    </span>
+                </div>
+                <div class="header__categoryForBelowLarge-list">
+                    {% for muc in danhMuc %}
+                    <a href="{% url 'timkiem' %}?category_id={{ muc.MaDM }}"  class="categoryForBelowLarge__item categoryForBelowLarge__item{{ forloop.counter }}">
+                        {{ muc.TenDM }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!--header for all devices-->
+            <div class="header__navBar  hideOnMd hideOnSm hideOnXsm">
+                <a href="{% url 'tintuc' %}" class="header__navBar-item header__navBar-news">
+                    Tin tức
+                </a>
+                <a href="{% url 'gioithieu' %}" class="header__navBar-item header__navBar-introduction">
+                    Giới thiệu
+                </a>
+                <a href="{% url 'hoadon' %}" class="header__navBar-item header__navBar-onlineBill">
+                    HĐ điện tử
+                </a>
+                <span class="header__navBar-item header__navBar-warranty">
+                    Tiếp nhận BH
+                </span>
+                <a href="{% url 'tuyendung' %}" class="header__navBar-item header__navBar-recruitment">
+                    Tuyển dụng
+                </a>
+            </div>
+
+            <!--header for all devices for mobile-->
+            <div class="header__navBarForBelowLarge-container showOnMd showOnSm showOnXsm">
+                <div class="header__navBarForBelowLarge">
+                    <div class="header__navBarForBelowLarge-item header__navBarForBelowLarge-item3">
+                        <a href="{% url 'tintuc' %}" class="navBarForBelowLarge-item-text">
+                            Tin tức                        
+                        </a>
+                    </div>
+                    <div class="header__navBarForBelowLarge-item header__navBarForBelowLarge-item4">
+                        <a href="{% url 'gioithieu' %}" class="navBarForBelowLarge-item-text">
+                            Giới thiệu                       
+                        </a>
+                    </div>
+                    <div class="header__navBarForBelowLarge-item header__navBarForBelowLarge-item5">
+                        <a href="{% url 'hoadon' %}" class="navBarForBelowLarge-item-text">
+                            HĐ điện tử                        
+                        </a>
+                    </div>
+                    <div class="header__navBarForBelowLarge-item header__navBarForBelowLarge-item6">
+                            Tiếp nhận BH                       
+                    </div>
+                    <div class="header__navBarForBelowLarge-item header__navBarForBelowLarge-item7">
+                        <a href="{% url 'tuyendung' %}" class="navBarForBelowLarge-item-text">
+                            Tuyển dụng                        
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+<div class="content">
+    <div class="grid">
+    <div class="address-left">
+        <h2>Địa chỉ của bạn</h2>
+        <button class="btn-primary" id="addAddressBtn">+ Thêm địa chỉ</button>
+        <div class="address-info">
+            <div>Tên tài khoản: <span>{{ user.Email }}</span> (Địa chỉ mặc định)</div>
+            <div>Công ty: <span>{{ diachi.CongTy }}</span></div>
+            <div>Địa chỉ: <span>{{ diachi.DiaChi1 }}</span>, <span>{{ diachi.QuocGia }}</span></div>
+            <div>Quốc tịch: <span>{{ diachi.QuocGia }}</span></div>
+            <div>Số điện thoại: <span>{{ diachi.SoDienThoai }}</span></div>
+        </div>
+        <button class="btn-primary" id="editAddressBtn">Chỉnh sửa địa chỉ</button>
+    </div>
+    <div class="address-right" id="addressRight">
+        <button class="btn-back" onclick="window.history.back()">Quay lại</button>
+        <form id="addressForm" method="post">
+            {% csrf_token %}
+            <div class="form-row">
+                <label>Tên*</label>
+                <input type="text" id="formFirstname" name="firstname" value="{{ diachi.Ten }}" required>
+            </div>
+            <div class="form-row">
+                <label>Họ*</label>
+                <input type="text" id="formLastname" name="lastname" value="{{ diachi.Ho }}" required>
+            </div>
+            <div class="form-row">
+                <label>Công ty</label>
+                <input type="text" id="formCompany" name="company" value="{{ diachi.CongTy }}">
+            </div>
+            <div class="form-row">
+                <label>Địa chỉ*</label>
+                <input type="text" id="formAddress" name="address" value="{{ diachi.DiaChi1 }}" required>
+            </div>
+            <div class="form-row">
+                <label>Địa chỉ 2*</label>
+                <input type="text" id="formAddress2" name="address2" value="{{ diachi.DiaChi2 }}" required>
+            </div>
+            <div class="form-row">
+                <label>Quốc gia*</label>
+                <input type="text" id="formCountry" name="country" value="{{ diachi.QuocGia|default:'Vietnam' }}" required>
+            </div>
+            <div class="form-row">
+                <label>Mã Zip</label>
+                <input type="text" id="formZip" name="zip" value="{{ diachi.MaZip }}">
+            </div>
+            <div class="form-row">
+                <label>Số điện thoại*</label>
+                <input type="text" id="formPhone" name="phone" value="{{ diachi.SoDienThoai }}" required>
+            </div>
+            <div class="form-actions" id="formActions">
+                <button type="submit" class="btn-primary" id="updateBtn">Cập nhật địa chỉ</button>
+                <button type="button" class="btn-cancel" id="cancelBtn" onclick="window.history.back()">Hủy</button>
+            </div>
+        </form>
+        {% if success %}
+        <div style="color:green;">Cập nhật địa chỉ thành công!</div>
+        {% endif %}
+    </div>
+    <div class="address-right" id="addAddressForm" style="display:none;">
+        <button class="btn-back" onclick="window.history.back()">Quay lại</button>
+        <form method="post" action="{% url 'diachi' %}">
+            {% csrf_token %}
+            <div class="form-row">
+                <label>Tên*</label>
+                <input type="text" name="firstname" required>
+            </div>
+            <div class="form-row">
+                <label>Họ*</label>
+                <input type="text" name="lastname" required>
+            </div>
+            <div class="form-row">
+                <label>Công ty</label>
+                <input type="text" name="company">
+            </div>
+            <div class="form-row">
+                <label>Địa chỉ*</label>
+                <input type="text" name="address" required>
+            </div>
+            <div class="form-row">
+                <label>Quốc gia*</label>
+                <input type="text" name="country" value="Vietnam" required>
+            </div>
+            <div class="form-row">
+                <label>Mã Zip</label>
+                <input type="text" name="zip">
+            </div>
+            <div class="form-row">
+                <label>Số điện thoại*</label>
+                <input type="text" name="phone" required>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">Thêm địa chỉ</button>
+                <button type="button" class="btn-cancel" onclick="document.getElementById('addAddressForm').style.display='none';document.getElementById('addressRight').style.display='block';">Hủy</button>
+            </div>
+        </form>
+    </div>
+    </div>
+</div>
+<script>
+    document.getElementById('addAddressBtn').onclick = function() {
+        document.getElementById('addressRight').style.display = 'none';
+        document.getElementById('addAddressForm').style.display = 'block';
+    };
+</script>
+</body>
+</html>

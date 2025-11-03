@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Thông tin tài khoản</title>
+    <link rel="stylesheet" href="../static/css/accountInfo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<div>
+    
+</div>
+<div class="account-info-container">
+    <div class="account-info-left">
+        <h1>Thông tin đặt hàng</h1>
+        <div class="account-info-greeting">
+            <b>Xin chào, <span class="account-info-name">{{ first_name }}</span> !</b>
+        </div>
+        <table class="account-info-table">
+            <thead>
+                <tr>
+                    <th>Đơn hàng</th>
+                    <th>Ngày</th>
+                    <th>Giá trị đơn hàng</th>
+                    <th>Trạng thái thanh toán</th>
+                    <th>Trạng thái giao hàng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td id="orderDate"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="account-info-right">
+        <h1>Thông tin tài khoản</h1>
+        <div class="account-info-detail">
+            <div class="account-info-greeting">
+                <b>Xin chào, <span class="account-info-name">{{ first_name }}</span> !</b>
+            </div>
+            <div class="account-info-detail-row">
+                Điện thoại: <span>{{ user.MaDC.SoDienThoai }}</span>
+            </div>
+            <div class="account-info-detail-row">
+                Địa chỉ: <span>{{ user.MaDC.DiaChi1 }}</span>
+            </div>
+            <div class="account-info-detail-row">
+                Công ty: <span>{{ user.MaDC.CongTy }}</span>
+            </div>
+            <div class="account-info-detail-row">
+                Quốc gia: <span>{{ user.MaDC.QuocGia }}</span>
+            </div>
+            <div class="account-info-detail-row">
+                Zip code: <span>{{ user.MaDC.MaZip }}</span>
+            </div>
+            <form action="{% url 'address' %}" method="get" style="display:inline;">
+                <button type="submit" class="account-info-address-btn">Chỉnh sửa địa chỉ</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

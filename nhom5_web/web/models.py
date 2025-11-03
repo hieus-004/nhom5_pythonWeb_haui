@@ -37,6 +37,7 @@ class SanPham(models.Model):
 
 class HinhAnh(models.Model):
     MaHA = models.CharField(max_length=30, primary_key=True)
+    
     MaSp = models.ForeignKey(SanPham, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
@@ -99,6 +100,19 @@ class GioHang(models.Model):
 
     def __str__(self):
         return self.MaGH
+    
+    def save(self, *args, **kwargs):
+        if not self.MaGH:
+            last = GioHang.objects.all().order_by('-MaGH').first()
+            if last and last.MaGH.startswith('GH'):
+                try:
+                    last_num = int(last.MaGH[2:])
+                except ValueError:
+                    last_num = 0
+            else:
+                last_num = 0
+            self.MaGH = f"GH{last_num+1:02d}"  # e.g., GH00001
+        super().save(*args, **kwargs)
 
 class GioHang_SanPham(models.Model):
     GioHang = models.ForeignKey(GioHang, on_delete=models.CASCADE)

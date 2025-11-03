@@ -1,0 +1,244 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robo Technology</title>
+    <link rel="stylesheet" href="{% static 'css/Giohang.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/grid.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+    <div class="header">
+        <div class="header__part1">
+            <a href="homePage.html" class="header__homePage-link">
+                <img src="assets/img/logo/logo.webp" alt="" class="header__logo">
+            </a>
+            <form action="{% url 'timkiem' %}" method="get" class="header__searchContainer">
+                <input type="text" name="q" class="searchContainer__input" placeholder="Nhập sản phẩm cần tìm">
+                <button type="submit" class="searchContainer__searchButton">
+                    <i class="fa-solid fa-magnifying-glass searchContainer__searchIcon"></i>
+                </button>
+            </form>
+            <div class="header__phoneNumber hideOnLg hideOnMd hideOnSm hideOnXsm">
+                <div class="phoneNumber__hotline header__phoneNumber--separate">
+                    <span class="phoneNumber__hotline-text">
+                        Hotline
+                    </span>
+                    <span class="phoneNumber__hotlineNumber">
+                        1900 9006
+                    </span>
+                </div>
+                <div class="phoneNumber__purchase header__phoneNumber--separate">
+                    <span class="phoneNumber__purchase-text">
+                        Mua hàng
+                    </span>
+                    <span class="phoneNumber__purchaseNumber">
+                        0916 304 838
+                    </span>
+                </div>
+                <div class="phoneNumber__technicalSupport">
+                    <span class="phoneNumber__technicalSupport-text">
+                        Hỗ trợ kỹ thuật
+                    </span>
+                    <span class="phoneNumber__technicalSupportNumber">
+                        0915 921 926
+                    </span>
+                </div>
+            </div>
+           <div class="header__user">
+                <i class="fa-solid fa-user header__userIcon"></i>
+                <div class="header__user-DropDownMenu">
+                    <span class="user__DropDownMenu-Arrow"></span>
+                    {% if request.session.user_id %}
+                        <div class="user__DropDownMenu-Account">
+                            <a href="{% url 'thongtintaikhoan' %}" class="DropDownMenu-Account__text">
+                                Tài khoản
+                            </a>
+                        </div>
+                        <div class="user__DropDownMenu-LogOut">
+                            <a href="{% url 'dangxuat' %}" class="DropDownMenu-Account__text">
+                                Đăng xuất
+                            </a>
+                        </div>
+                    {% else %}
+                        <div class="user__DropDownMenu-Account">
+                            <a href="{% url 'dangky' %}" class="DropDownMenu-Account__text">
+                                Đăng ký 
+                            </a>
+                        </div>
+                        <div class="user__DropDownMenu-LogOut">
+                            <a href="{% url 'dangnhap' %}" class="DropDownMenu-Account__text">
+                                Đăng nhập 
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <a href="{% url 'giohang' %}" class="header_shoppingCart">
+                <i class="fa-solid fa-cart-shopping header__shoppingCartIcon"></i>
+            </a>
+        </div>
+        <div class="header__part2">
+
+            <!--header for desktop-->
+            <div class="header__category hideOnMd hideOnSm hideOnXsm"> 
+                <i class="fa-solid fa-bars header__categoryIcon"></i>
+                <span class="header__categoryText">
+                    Danh mục
+                </span>
+                <div class="header__categoryList">
+                    {% for muc in danhMuc %}
+                    <a href="{% url 'timkiem' %}?category_id={{ muc.MaDM }}" class="categoryList__categoryItem categoryList__item{{ forloop.counter }}">
+                        {{ muc.TenDM }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!--header for mobile-->
+            <div class="header__categoryForBelowLarge showOnMd showOnSm showOnXsm">
+                <div class="header__categoryForBelowLarge-heading">
+                    <i class="fa-solid fa-bars header__categoryForBelowLarge-icon"></i>
+                    <span class="header__categoryForBelowLarge-heading">
+                        Danh mục
+                    </span>
+                </div>
+                <div class="header__categoryForBelowLarge-list">
+                    {% for muc in danhMuc %}
+                    <a href="{% url 'timkiem' %}?category_id={{ muc.MaDM }}"  class="categoryForBelowLarge__item categoryForBelowLarge__item{{ forloop.counter }}">
+                        {{ muc.TenDM }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!--header for all devices-->
+            <div class="header__navBar  hideOnMd hideOnSm hideOnXsm">
+                <a href="{% url 'tintuc' %}" class="header__navBar-item header__navBar-news">
+                    Tin tức
+                </a>
+                <a href="{% url 'gioithieu' %}" class="header__navBar-item header__navBar-introduction">
+                    Giới thiệu
+                </a>
+                <a href="{% url 'hoadon' %}" class="header__navBar-item header__navBar-onlineBill">
+                    HĐ điện tử
+                </a>
+                <span class="header__navBar-item header__navBar-warranty">
+                    Tiếp nhận BH
+                </span>
+                <a href="{% url 'tuyendung' %}" class="header__navBar-item header__navBar-recruitment">
+                    Tuyển dụng
+                </a>
+            </div>
+
+            <!--header for all devices for mobile-->
+            <div class="header__navBarForBelowLarge-container showOnMd showOnSm showOnXsm">
+                <div class="header__navBarForBelowLarge">
+                    <div class="header__navBarForBelowLarge-item header__navBarForBelowLarge-item3">
+                        <a href="{% url 'tintuc' %}" class="navBarForBelowLarge-item-text">
+                            Tin tức                        
+                        </a>
+                    </div>
+                    <div class="header__navBarForBelowLarge-item header__navBarForBelowLarge-item4">
+                        <a href="{% url 'gioithieu' %}" class="navBarForBelowLarge-item-text">
+                            Giới thiệu                       
+                        </a>
+                    </div>
+                    <div class="header__navBarForBelowLarge-item header__navBarForBelowLarge-item5">
+                        <a href="{% url 'hoadon' %}" class="navBarForBelowLarge-item-text">
+                            HĐ điện tử                        
+                        </a>
+                    </div>
+                    <div class="header__navBarForBelowLarge-item header__navBarForBelowLarge-item6">
+                            Tiếp nhận BH                       
+                    </div>
+                    <div class="header__navBarForBelowLarge-item header__navBarForBelowLarge-item7">
+                        <a href="{% url 'tuyendung' %}" class="navBarForBelowLarge-item-text">
+                            Tuyển dụng                        
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    <div class="content">
+        <div class="grid">
+            <div class="row">
+                <div class="column xxl-12">
+                    <div class="cart__breadcrumb">
+                        <a href="/">Trang chủ</a> &gt; <span>Giỏ hàng của bạn</span>
+                    </div>
+                    <h1 class="cart__title">Giỏ hàng</h1>
+                    <div class="row">
+                        <div class="column xxl-8 md-12 sm-12 xsm-12">
+                            <table class="cart__table">
+                                <thead>
+                                    <tr>
+                                        <th>Sản phẩm</th>
+                                        <th>Số lượng</th>
+                                        <th>Thành tiền</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in cart_items %}
+                                    <tr>
+                                        <td>
+                                            <img src="{{ item.image_url }}" alt="{{ item.product_name }}" class="cart__product-img">
+                                            <span>{{ item.product_name }}</span>
+                                        </td>
+                                        <td>
+                                            <button type="button" onclick="updateCart('{{ item.product_id }}', -1)">-</button>
+                                            <span id="qty-{{ item.product_id }}">{{ item.quantity }}</span>
+                                            <button type="button" onclick="updateCart('{{ item.product_id }}', 1)">+</button>
+                                        </td>
+                                        <td>
+                                            <span>{{ item.total_price|floatformat:0 }}₫</span>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="column xxl-4 md-12 sm-12 xsm-12">
+                            <div class="cart__summary">
+                                <div class="cart__total">
+                                    Tổng tiền <span>{{ cart_total|floatformat:0 }}₫</span>
+                                </div>
+                                <textarea class="cart__note" placeholder="Ghi chú"></textarea>
+                                <a href="{% url 'thanhtoan' %}" class="cart__checkout-btn">Thanh toán ngay</a>
+                                <a href="{% url 'homePage' %}" class="cart__continue-btn">Tiếp tục mua hàng</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function updateCart(productId, change) {
+            fetch("{% url 'cap_nhat_gio_hang' %}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": "{{ csrf_token }}",
+                },
+                body: JSON.stringify({ product_id: productId, change: change })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('qty-' + productId).innerText = data.new_quantity;
+                    // Optionally update total price, etc.
+                    location.reload(); // Or update the DOM without reload
+                }
+            });
+        }
+    </script>
+</body>
+</html>
